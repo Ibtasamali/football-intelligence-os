@@ -1,0 +1,23 @@
+.env
+*.env
+!.env.example
+.venv/
+__pycache__/
+*.pyc
+node_modules/
+dist/
+.pytest_cache/
+.DS_Store
+backend/data_cache/
+*.log
+backend/.gitignore
+test-results/
+docs/video/.work/
+frontend/tsconfig.tsbuildinfo
+# keep only the final submission videos in the repo
+docs/video/fios-2min.mp4
+docs/video/fios-full.mp4
+docs/video/fios-2min-v2.mp4
+docs/video/fios-full-v2.mp4
+backend.log
+frontend.log

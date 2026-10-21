@@ -1,0 +1,1102 @@
+{
+  "match": "Synthetic demo match \u2014 Azure City FC vs Thames Athletic",
+  "cost_latency": {
+    "events": 2344,
+    "deep_analyses": 77,
+    "insights": 53,
+    "llm_calls": 25,
+    "tokens_prompt": 70771,
+    "tokens_completion": 15312,
+    "events_without_llm_pct": 98.93,
+    "cost_usd_match": 0.0528,
+    "price_assumption_usd_per_1M": {
+      "input": 0.4,
+      "output": 1.6
+    },
+    "fast_path_ms": {
+      "p50": 2.61,
+      "p95": 3.63
+    },
+    "deep_path_ms": {
+      "p50": 16,
+      "p95": 34869
+    },
+    "verification": {
+      "passed_first_attempt": 49,
+      "retries": 4,
+      "fields_replaced": 1,
+      "llm_fallbacks": 0
+    },
+    "wall_clock_s": 95.7
+  },
+  "hallucination": {
+    "samples": 18,
+    "conditions": {
+      "naive": {
+        "foundry": {
+          "groundedness_mean": 4.67,
+          "groundedness_ge4_pct": 94.4,
+          "relevance_mean": 5.0,
+          "n": 18
+        },
+        "claims": 94,
+        "supported_pct": 42.6,
+        "unsupported_pct": 56.4,
+        "contradicted_pct": 1.1,
+        "texts_with_any_unsupported_or_contradicted_pct": 100.0,
+        "numbers": 58,
+        "untraceable_numbers_pct": 0.0
+      },
+      "grounded": {
+        "foundry": {
+          "groundedness_mean": 4.78,
+          "groundedness_ge4_pct": 100.0,
+          "relevance_mean": 4.28,
+          "n": 18
+        },
+        "claims": 156,
+        "supported_pct": 89.1,
+        "unsupported_pct": 10.9,
+        "contradicted_pct": 0.0,
+        "texts_with_any_unsupported_or_contradicted_pct": 66.7,
+        "numbers": 174,
+        "untraceable_numbers_pct": 1.1
+      },
+      "pipeline": {
+        "foundry": {
+          "groundedness_mean": 4.78,
+          "groundedness_ge4_pct": 100.0,
+          "relevance_mean": 4.22,
+          "n": 18
+        },
+        "claims": 144,
+        "supported_pct": 88.9,
+        "unsupported_pct": 10.4,
+        "contradicted_pct": 0.7,
+        "texts_with_any_unsupported_or_contradicted_pct": 66.7,
+        "numbers": 173,
+        "untraceable_numbers_pct": 0.0
+      }
+    },
+    "rows": [
+      {
+        "insight_id": "ins_cb54a82f955c",
+        "minute": 61,
+        "category": "GOAL",
+        "naive": {
+          "untraceable_numbers": 0,
+          "numbers": 4,
+          "judge": {
+            "n": 3,
+            "supported": 1,
+            "unsupported": 2,
+            "contradicted": 0,
+            "judge_failed": false
+          },
+          "chars": 498,
+          "text": "At the 61:37 mark, Marcus Hale scored a crucial equalizer for Azure City FC, bringing the score to 1\u20131 against Thames Athletic. This goal is significant as it shifts the momentum back in favor of Azure City, preventing Thames from extending their lead and boosting the home team's confidence. Tactically, Hale's goal likely resulted from a well-executed attacking move, forcing Thames Athletic to reconsider their defensive setup and possibly open up the game as both teams push for a winning goal.",
+          "foundry": {
+            "groundedness": 5.0,
+            "relevance": 5.0
+          }
+        },
+        "grounded": {
+          "untraceable_numbers": 0,
+          "numbers": 8,
+          "judge": {
+            "n": 7,
+            "supported": 7,
+            "unsupported": 0,
+            "contradicted": 0,
+            "judge_failed": false
+          },
+          "chars": 491,
+          "text": "Marcus Hale\u2019s pressing leads to equaliser. Azure City FC\u2019s aggressive high press (PPDA 3.83 over last 5 minutes) was exemplified by Marcus Hale\u2019s pressure at 82m on the right flank, triggering a failed pass by Jack Holloway. Kai Moreno\u2019s interception and recovery at 72m initiated a fast transition, with 68% of Azure\u2019s recent attacks overloaded on the left flank. The resulting big chance (xG 0.333) was clinically converted by Hale from the final third centre channel, equalising at 61:37.",
+          "foundry": {
+            "groundedness": 5.0,
+            "relevance": 5.0
+          }
+        },
+        "pipeline": {
+          "untraceable_numbers": 0,
+          "numbers": 8,
+          "judge": {
+            "n": 7,
+            "supported": 7,
+            "unsupported": 0,
+            "contradicted": 0,
+            "judge_failed": false
+          },
+          "chars": 491,
+          "text": "Marcus Hale\u2019s pressing leads to equaliser. Azure City FC\u2019s aggressive high press (PPDA 3.83 over last 5 minutes) was exemplified by Marcus Hale\u2019s pressure at 82m on the right flank, triggering a failed pass by Jack Holloway. Kai Moreno\u2019s interception and recovery at 72m initiated a fast transition, with 68% of Azure\u2019s recent attacks overloaded on the left flank. The resulting big chance (xG 0.333) was clinically converted by Hale from the final third centre channel, equalising at 61:37.",
+          "foundry": {
+            "groundedness": 5.0,
+            "relevance": 5.0
+          }
+        }
+      },
+      {
+        "insight_id": "ins_552584cfd8c1",
+        "minute": 83,
+        "category": "GOAL",
+        "naive": {
+          "untraceable_numbers": 0,
+          "numbers": 3,
+          "judge": {
+            "n": 3,
+            "supported": 2,
+            "unsupported": 1,
+            "contradicted": 0,
+            "judge_failed": false
+          },
+          "chars": 457,
+          "text": "At the 83rd minute, Theo Laurent scored a crucial goal for Azure City FC, putting them ahead 2-1 against Thames Athletic. This goal is significant because it breaks the deadlock late in the game, shifting momentum firmly in favor of Azure City. Tactically, Laurent's goal likely came from exploiting space left by Thames Athletic as they pushed forward in search of an equalizer, allowing Azure City to capitalize on a counterattack and secure a vital lead.",
+          "foundry": {
+            "groundedness": 5.0,
+            "relevance": 5.0
+          }
+        },
+        "grounded": {
+          "untraceable_numbers": 0,
+          "numbers": 8,
+          "judge": {
+            "n": 7,
+            "supported": 7,
+            "unsupported": 0,
+            "contradicted": 0,
+            "judge_failed": false
+          },
+          "chars": 607,
+          "text": "Theo Laurent's Late Goal Seals Azure City Win. Azure City FC's aggressive high press forced Thames Athletic into turnovers, evidenced by 5 fast transitions in 10 minutes against a 44.1m defensive line height. The winning goal resulted from a rapid counter-attack initiated by Daniel Okoye\u2019s interception and recovery near Azure\u2019s own penalty area, progressing through 3 successful passes and a carry by Laurent into a 1v1 center channel shooting opportunity (xG 0.163). This goal increased Azure City's xG to 1.04 versus Thames' 0.47, reflecting superior chance creation and exploitation of transitio",
+          "foundry": {
+            "groundedness": 5.0,
+            "relevance": 5.0
+          }
+        },
+        "pipeline": {
+          "untraceable_numbers": 0,
+          "numbers": 8,
+          "judge": {
+            "n": 7,
+            "supported": 7,
+            "unsupported": 0,
+            "contradicted": 0,
+            "judge_failed": false
+          },
+          "chars": 607,
+          "text": "Theo Laurent's Late Goal Seals Azure City Win. Azure City FC's aggressive high press forced Thames Athletic into turnovers, evidenced by 5 fast transitions in 10 minutes against a 44.1m defensive line height. The winning goal resulted from a rapid counter-attack initiated by Daniel Okoye\u2019s interception and recovery near Azure\u2019s own penalty area, progressing through 3 successful passes and a carry by Laurent into a 1v1 center channel shooting opportunity (xG 0.163). This goal increased Azure City's xG to 1.04 versus Thames' 0.47, reflecting superior chance creation and exploitation of transitio",
+          "foundry": {
+            "groundedness": 5.0,
+            "relevance": 5.0
+          }
+        }
+      },
+      {
+        "insight_id": "ins_8f7c5811c637",
+        "minute": 34,
+        "category": "GOAL",
+        "naive": {
+          "untraceable_numbers": 0,
+          "numbers": 4,
+          "judge": {
+            "n": 8,
+            "supported": 4,
+            "unsupported": 4,
+            "contradicted": 0,
+            "judge_failed": false
+          },
+          "chars": 523,
+          "text": "At the 34:50 mark, Ethan Brooks scored for Thames Athletic, putting them ahead 1-0 against Azure City FC. This goal is crucial as it breaks the deadlock and gives Thames Athletic a psychological edge going into halftime. Tactically, Brooks' goal likely stems from Thames Athletic exploiting space behind Azure City's defense, forcing them to adjust their formation and defensive approach to prevent further damage. This moment shifts the momentum and will influence how both teams strategize for the remainder of the match.",
+          "foundry": {
+            "groundedness": 4.0,
+            "relevance": 5.0
+          }
+        },
+        "grounded": {
+          "untraceable_numbers": 1,
+          "numbers": 7,
+          "judge": {
+            "n": 12,
+            "supported": 11,
+            "unsupported": 1,
+            "contradicted": 0,
+            "judge_failed": false
+          },
+          "chars": 641,
+          "text": "Thames Athletic scores via right flank overload. Thames Athletic\u2019s tactical mechanism involved a right flank overload, with 77% of their attacking actions in the last 7 minutes on that side, creating a 3v1 attacker-to-defender advantage. Kofi Mensah, acting as an overlapping attacking full-back, delivered a key cross to Ethan Brooks, who converted a header with an xG of 0.142, a chance typically scored about 10% of the time. Thames Athletic\u2019s compact mid-block and fast right-sided attacks exploited Azure City FC\u2019s defensive shape, reflected in a field tilt of 0.611 favoring Thames in the last ",
+          "foundry": {
+            "groundedness": 5.0,
+            "relevance": 5.0
+          }
+        },
+        "pipeline": {
+          "untraceable_numbers": 0,
+          "numbers": 9,
+          "judge": {
+            "n": 7,
+            "supported": 6,
+            "unsupported": 1,
+            "contradicted": 0,
+            "judge_failed": false
+          },
+          "chars": 342,
+          "text": "Ethan Brooks Scores After Right-Flank Overload. Goal \u2014 Ethan Brooks (Thames Athletic) in the final third, centre channel: assist Kofi Mensah, xG 0.142. A 0.142 xG chance is scored roughly 1 times in 10. This echoes Matchday 7 \u2014 Azure City FC 3\u20132 Thames Athletic in the archive. Model estimate: azure city fc score in the next 10 minutes \u2014 8%.",
+          "foundry": {
+            "groundedness": 4.0,
+            "relevance": 5.0
+          }
+        }
+      },
+      {
+        "insight_id": "ins_ad09e0db9272",
+        "minute": 88,
+        "category": "DANGEROUS_ATTACK",
+        "naive": {
+          "untraceable_numbers": 0,
+          "numbers": 3,
+          "judge": {
+            "n": 5,
+            "supported": 3,
+            "unsupported": 2,
+            "contradicted": 0,
+            "judge_failed": false
+          },
+          "chars": 544,
+          "text": "In the 89th minute of the match between Azure City FC and Thames Athletic, Jamal Pierce from Thames Athletic took a crucial shot on goal. With the score at 2-1 in favor of Azure City, this moment was pivotal as Thames Athletic was pushing hard to equalize late in the game. Tactically, this shot reflects Thames Athletic's aggressive approach in the final minutes, likely committing more players forward to break down Azure City's defense. This pressure could force Azure City to drop deeper and focus on counter-attacks to preserve their lead.",
+          "foundry": {
+            "groundedness": 5.0,
+            "relevance": 5.0
+          }
+        },
+        "grounded": {
+          "untraceable_numbers": 0,
+          "numbers": 8,
+          "judge": {
+            "n": 6,
+            "supported": 5,
+            "unsupported": 1,
+            "contradicted": 0,
+            "judge_failed": false
+          },
+          "chars": 544,
+          "text": "Thames Athletic's Big Chance Saved Late On. At 88:39, Thames Athletic's Jamal Pierce took a big chance shot from the final third center channel with an xG of 0.531, but the shot was saved, maintaining Azure City FC's 2-1 lead. Azure City FC's defensive line held firm despite Thames Athletic's field tilt of 0.438 in the last 5 minutes and Thames Athletic's 57 final third entries, demonstrating effective defensive organization and transition recovery, as seen in Elias Brandt's successful interception and possession retention moments before.",
+          "foundry": {
+            "groundedness": 5.0,
+            "relevance": 5.0
+          }
+        },
+        "pipeline": {
+          "untraceable_numbers": 0,
+          "numbers": 8,
+          "judge": {
+            "n": 6,
+            "supported": 5,
+            "unsupported": 1,
+            "contradicted": 0,
+            "judge_failed": false
+          },
+          "chars": 544,
+          "text": "Thames Athletic's Big Chance Saved Late On. At 88:39, Thames Athletic's Jamal Pierce took a big chance shot from the final third center channel with an xG of 0.531, but the shot was saved, maintaining Azure City FC's 2-1 lead. Azure City FC's defensive line held firm despite Thames Athletic's field tilt of 0.438 in the last 5 minutes and Thames Athletic's 57 final third entries, demonstrating effective defensive organization and transition recovery, as seen in Elias Brandt's successful interception and possession retention moments before.",
+          "foundry": {
+            "groundedness": 5.0,
+            "relevance": 5.0
+          }
+        }
+      },
+      {
+        "insight_id": "ins_fb061e80f166",
+        "minute": 82,
+        "category": "TURNING_POINT",
+        "naive": {
+          "untraceable_numbers": 0,
+          "numbers": 4,
+          "judge": {
+            "n": 6,
+            "supported": 2,
+            "unsupported": 4,
+            "contradicted": 0,
+            "judge_failed": false
+          },
+          "chars": 588,
+          "text": "At the 82:23 mark in the match between Azure City FC and Thames Athletic, Luca Ferri delivered a crucial pass that could potentially unlock the opposition's defense. With the score tied at 1\u20131, this moment is significant as it represents a chance for Azure City FC to regain the lead late in the game. Tactically, Ferri's pass indicates a push to increase attacking pressure, possibly exploiting spaces left by Thames Athletic as they seek a winning goal themselves. This phase highlights the importance of precise ball distribution in breaking deadlocks during tightly contested matches.",
+          "foundry": {
+            "groundedness": 5.0,
+            "relevance": 5.0
+          }
+        },
+        "grounded": {
+          "untraceable_numbers": 0,
+          "numbers": 6,
+          "judge": {
+            "n": 7,
+            "supported": 7,
+            "unsupported": 0,
+            "contradicted": 0,
+            "judge_failed": false
+          },
+          "chars": 526,
+          "text": "Thames Athletic Exposed in Fast Transitions. The newly detected transition vulnerability pattern shows Thames Athletic's defensive line at 38.4 meters is too high or slow to reorganize after losing possession. Azure City FC capitalizes on this by executing 3 fast transitions in 10 minutes (1.3 per 10 minutes), compared to a baseline of 1.34, indicating a significant increase in transition threat. This tactical weakness increases Azure City FC's expected threat and scoring opportunities in the closing stages of the match.",
+          "foundry": {
+            "groundedness": 5.0,
+            "relevance": 5.0
+          }
+        },
+        "pipeline": {
+          "untraceable_numbers": 0,
+          "numbers": 6,
+          "judge": {
+            "n": 7,
+            "supported": 7,
+            "unsupported": 0,
+            "contradicted": 0,
+            "judge_failed": false
+          },
+          "chars": 526,
+          "text": "Thames Athletic Exposed in Fast Transitions. The newly detected transition vulnerability pattern shows Thames Athletic's defensive line at 38.4 meters is too high or slow to reorganize after losing possession. Azure City FC capitalizes on this by executing 3 fast transitions in 10 minutes (1.3 per 10 minutes), compared to a baseline of 1.34, indicating a significant increase in transition threat. This tactical weakness increases Azure City FC's expected threat and scoring opportunities in the closing stages of the match.",
+          "foundry": {
+            "groundedness": 5.0,
+            "relevance": 5.0
+          }
+        }
+      },
+      {
+        "insight_id": "ins_e8da3286509e",
+        "minute": 87,
+        "category": "HIGH_PRESS",
+        "naive": {
+          "untraceable_numbers": 0,
+          "numbers": 2,
+          "judge": {
+            "n": 3,
+            "supported": 1,
+            "unsupported": 2,
+            "contradicted": 0,
+            "judge_failed": false
+          },
+          "chars": 478,
+          "text": "At 87:44 in the match between Azure City FC and Thames Athletic, Jamal Pierce from Thames Athletic successfully regained possession. This moment is crucial as it gives Thames Athletic a chance to push forward in the final minutes, seeking an equalizer. Tactically, regaining possession this late allows Thames Athletic to transition quickly from defense to attack, potentially catching Azure City FC off guard and forcing them to reorganize their defensive shape under pressure.",
+          "foundry": {
+            "groundedness": 5.0,
+            "relevance": 5.0
+          }
+        },
+        "grounded": {
+          "untraceable_numbers": 0,
+          "numbers": 9,
+          "judge": {
+            "n": 9,
+            "supported": 9,
+            "unsupported": 0,
+            "contradicted": 0,
+            "judge_failed": false
+          },
+          "chars": 560,
+          "text": "Thames Athletic Launches Intense High Press Late. Starting at minute 87, Thames Athletic activated a high press with a PPDA_5min of 3.0\u2014significantly lower than their match average of 6.59\u2014executing 9 pressures in the opponent's defensive third, averaging defensive actions at 57.2 meters upfield. This aggressive pressing line aims to compress space in Azure City FC's defensive third, increasing turnover opportunities and countering Azure City's vulnerability in transition, as evidenced by their 2 fast breaks in 10 minutes against a 42.1 m defensive line.",
+          "foundry": {
+            "groundedness": 5.0,
+            "relevance": 5.0
+          }
+        },
+        "pipeline": {
+          "untraceable_numbers": 0,
+          "numbers": 9,
+          "judge": {
+            "n": 9,
+            "supported": 9,
+            "unsupported": 0,
+            "contradicted": 0,
+            "judge_failed": false
+          },
+          "chars": 560,
+          "text": "Thames Athletic Launches Intense High Press Late. Starting at minute 87, Thames Athletic activated a high press with a PPDA_5min of 3.0\u2014significantly lower than their match average of 6.59\u2014executing 9 pressures in the opponent's defensive third, averaging defensive actions at 57.2 meters upfield. This aggressive pressing line aims to compress space in Azure City FC's defensive third, increasing turnover opportunities and countering Azure City's vulnerability in transition, as evidenced by their 2 fast breaks in 10 minutes against a 42.1 m defensive line.",
+          "foundry": {
+            "groundedness": 5.0,
+            "relevance": 5.0
+          }
+        }
+      },
+      {
+        "insight_id": "ins_53bae4bb99f1",
+        "minute": 17,
+        "category": "HIGH_PRESS",
+        "naive": {
+          "untraceable_numbers": 0,
+          "numbers": 4,
+          "judge": {
+            "n": 6,
+            "supported": 4,
+            "unsupported": 2,
+            "contradicted": 0,
+            "judge_failed": false
+          },
+          "chars": 454,
+          "text": "At 17 minutes and 14 seconds into the match, Yusuf Demir of Azure City FC executed a crucial tackle against Thames Athletic. This defensive action is significant as it stopped a potential attacking move, maintaining the scoreline at 0-0 and preventing Thames Athletic from gaining momentum. Tactically, Demir's timely intervention highlights Azure City FC's commitment to aggressive pressing and disrupting the opponent's build-up play early in the game.",
+          "foundry": {
+            "groundedness": 5.0,
+            "relevance": 5.0
+          }
+        },
+        "grounded": {
+          "untraceable_numbers": 0,
+          "numbers": 7,
+          "judge": {
+            "n": 8,
+            "supported": 7,
+            "unsupported": 1,
+            "contradicted": 0,
+            "judge_failed": false
+          },
+          "chars": 718,
+          "text": "Azure City FC Implements Effective High Press. Azure City FC\u2019s high pressing pattern is evidenced by a 5-minute PPDA of 2.71 and 9 pressures in the opponent half, significantly lower than their match average PPDA of 5.21, indicating intensified pressing intensity. The average defensive action location at 58 meters shows a high line of engagement, effectively compressing Thames Athletic\u2019s build-up space and forcing errors, as reflected by 8 high turnovers. This pressing strategy aims to disrupt Thames Athletic\u2019s possession and create quick transition opportunities, though it also exposes Azure ",
+          "foundry": {
+            "groundedness": 5.0,
+            "relevance": 3.0
+          }
+        },
+        "pipeline": {
+          "untraceable_numbers": 0,
+          "numbers": 7,
+          "judge": {
+            "n": 8,
+            "supported": 7,
+            "unsupported": 1,
+            "contradicted": 0,
+            "judge_failed": false
+          },
+          "chars": 718,
+          "text": "Azure City FC Implements Effective High Press. Azure City FC\u2019s high pressing pattern is evidenced by a 5-minute PPDA of 2.71 and 9 pressures in the opponent half, significantly lower than their match average PPDA of 5.21, indicating intensified pressing intensity. The average defensive action location at 58 meters shows a high line of engagement, effectively compressing Thames Athletic\u2019s build-up space and forcing errors, as reflected by 8 high turnovers. This pressing strategy aims to disrupt Thames Athletic\u2019s possession and create quick transition opportunities, though it also exposes Azure ",
+          "foundry": {
+            "groundedness": 5.0,
+            "relevance": 1.0
+          }
+        }
+      },
+      {
+        "insight_id": "ins_1deb46600a8a",
+        "minute": 28,
+        "category": "TACTICAL_SHIFT",
+        "naive": {
+          "untraceable_numbers": 0,
+          "numbers": 2,
+          "judge": {
+            "n": 4,
+            "supported": 1,
+            "unsupported": 3,
+            "contradicted": 0,
+            "judge_failed": false
+          },
+          "chars": 485,
+          "text": "At the 28:52 mark in the match between Azure City FC and Thames Athletic, Luca Ferri of Azure City FC made a crucial interception. This moment is significant because it halted an attacking move from Thames Athletic, preventing a potential goal-scoring opportunity. Tactically, Ferri's interception demonstrates Azure City's effective pressing and positioning in midfield, allowing them to regain possession and transition quickly into attack, which could shift momentum in their favor.",
+          "foundry": {
+            "groundedness": 5.0,
+            "relevance": 5.0
+          }
+        },
+        "grounded": {
+          "untraceable_numbers": 0,
+          "numbers": 11,
+          "judge": {
+            "n": 9,
+            "supported": 7,
+            "unsupported": 2,
+            "contradicted": 0,
+            "judge_failed": false
+          },
+          "chars": 693,
+          "text": "Thames Athletic Overloads Right Flank with 59% Attacks. The FLANK_OVERLOAD pattern by Thames Athletic is evidenced by 59% flank share out of 37 attacking actions over 7 minutes, heavily favoring the right side (22 right vs. 2 left actions). This strategic concentration likely aims to exploit Azure City FC\u2019s defensive left channel, which currently has 0 attackers against 2 defenders, creating a potential mismatch. Thames Athletic\u2019s line height (34.6m last 5 minutes) and compactness (1403 m\u00b2) suggest they maintain a balanced defensive shape while aggressively pushing attacks down the right flank",
+          "foundry": {
+            "groundedness": 4.0,
+            "relevance": 1.0
+          }
+        },
+        "pipeline": {
+          "untraceable_numbers": 0,
+          "numbers": 11,
+          "judge": {
+            "n": 9,
+            "supported": 7,
+            "unsupported": 2,
+            "contradicted": 0,
+            "judge_failed": false
+          },
+          "chars": 693,
+          "text": "Thames Athletic Overloads Right Flank with 59% Attacks. The FLANK_OVERLOAD pattern by Thames Athletic is evidenced by 59% flank share out of 37 attacking actions over 7 minutes, heavily favoring the right side (22 right vs. 2 left actions). This strategic concentration likely aims to exploit Azure City FC\u2019s defensive left channel, which currently has 0 attackers against 2 defenders, creating a potential mismatch. Thames Athletic\u2019s line height (34.6m last 5 minutes) and compactness (1403 m\u00b2) suggest they maintain a balanced defensive shape while aggressively pushing attacks down the right flank",
+          "foundry": {
+            "groundedness": 4.0,
+            "relevance": 1.0
+          }
+        }
+      },
+      {
+        "insight_id": "ins_4f431fa9081b",
+        "minute": 40,
+        "category": "TURNING_POINT",
+        "naive": {
+          "untraceable_numbers": 0,
+          "numbers": 4,
+          "judge": {
+            "n": 3,
+            "supported": 0,
+            "unsupported": 2,
+            "contradicted": 1,
+            "judge_failed": false
+          },
+          "chars": 484,
+          "text": "At the 40:06 mark in the match between Azure City FC and Thames Athletic, Ibrahim Sow completed a crucial pass that helped maintain Thames Athletic's attacking momentum. This moment is significant as it shows Thames Athletic's control and ability to build play patiently, keeping Azure City's defense on their toes. Tactically, Sow's pass demonstrates Thames Athletic's emphasis on possession and quick ball circulation to create scoring opportunities while protecting their 1-0 lead.",
+          "foundry": {
+            "groundedness": 2.0,
+            "relevance": 5.0
+          }
+        },
+        "grounded": {
+          "untraceable_numbers": 0,
+          "numbers": 4,
+          "judge": {
+            "n": 6,
+            "supported": 5,
+            "unsupported": 1,
+            "contradicted": 0,
+            "judge_failed": false
+          },
+          "chars": 524,
+          "text": "Azure City FC Exposed in Fast Transitions. Azure City FC\u2019s high defensive line (40.3 m average over 5 minutes) increases their exposure to rapid counterattacks, as Thames Athletic has executed 2 fast transitions per 10 minutes from their own half, matching the baseline rate but capitalizing on the space behind. This tactical vulnerability forces Azure City FC to either drop their line or improve transitional pressing to reduce Thames Athletic\u2019s effective exploitation of space and quick progression into the final third.",
+          "foundry": {
+            "groundedness": 5.0,
+            "relevance": 4.0
+          }
+        },
+        "pipeline": {
+          "untraceable_numbers": 0,
+          "numbers": 4,
+          "judge": {
+            "n": 6,
+            "supported": 5,
+            "unsupported": 1,
+            "contradicted": 0,
+            "judge_failed": false
+          },
+          "chars": 524,
+          "text": "Azure City FC Exposed in Fast Transitions. Azure City FC\u2019s high defensive line (40.3 m average over 5 minutes) increases their exposure to rapid counterattacks, as Thames Athletic has executed 2 fast transitions per 10 minutes from their own half, matching the baseline rate but capitalizing on the space behind. This tactical vulnerability forces Azure City FC to either drop their line or improve transitional pressing to reduce Thames Athletic\u2019s effective exploitation of space and quick progression into the final third.",
+          "foundry": {
+            "groundedness": 5.0,
+            "relevance": 5.0
+          }
+        }
+      },
+      {
+        "insight_id": "ins_98cc71b60600",
+        "minute": 51,
+        "category": "TACTICAL_SHIFT",
+        "naive": {
+          "untraceable_numbers": 0,
+          "numbers": 4,
+          "judge": {
+            "n": 5,
+            "supported": 2,
+            "unsupported": 3,
+            "contradicted": 0,
+            "judge_failed": false
+          },
+          "chars": 496,
+          "text": "At 51:42 in the match between Azure City FC and Thames Athletic, Kofi Mensah executed a crucial tackle to regain possession for Thames Athletic. This moment is significant because it halted an Azure City FC attack and allowed Thames to maintain their 1-0 lead. Tactically, Mensah's timely intervention highlights Thames Athletic's disciplined defensive approach and their commitment to disrupting Azure City's rhythm in midfield, which is key to preserving their advantage on the synthetic pitch.",
+          "foundry": {
+            "groundedness": 5.0,
+            "relevance": 5.0
+          }
+        },
+        "grounded": {
+          "untraceable_numbers": 0,
+          "numbers": 10,
+          "judge": {
+            "n": 9,
+            "supported": 7,
+            "unsupported": 2,
+            "contradicted": 0,
+            "judge_failed": false
+          },
+          "chars": 803,
+          "text": "Azure City FC Overloads Left Flank to Boost Attack. Azure City FC\u2019s tactical shift to a left flank overload, evidenced by 56% flank share over 7 minutes with 18 attacking actions (10 left, 7 center, 1 right), aims to exploit Thames Athletic\u2019s defensive structure which shows no attackers on the left side (0v0 situation). This pattern increases spatial pressure on Thames Athletic\u2019s right defensive channel, potentially destabilizing their defensive compactness (1408 m\u00b2) and line height (~35m), while Azure City FC\u2019s PPDA is relatively high at 19.0, indicating a more measured pressing approach to b",
+          "foundry": {
+            "groundedness": 4.0,
+            "relevance": 1.0
+          }
+        },
+        "pipeline": {
+          "untraceable_numbers": 0,
+          "numbers": 10,
+          "judge": {
+            "n": 9,
+            "supported": 7,
+            "unsupported": 2,
+            "contradicted": 0,
+            "judge_failed": false
+          },
+          "chars": 803,
+          "text": "Azure City FC Overloads Left Flank to Boost Attack. Azure City FC\u2019s tactical shift to a left flank overload, evidenced by 56% flank share over 7 minutes with 18 attacking actions (10 left, 7 center, 1 right), aims to exploit Thames Athletic\u2019s defensive structure which shows no attackers on the left side (0v0 situation). This pattern increases spatial pressure on Thames Athletic\u2019s right defensive channel, potentially destabilizing their defensive compactness (1408 m\u00b2) and line height (~35m), while Azure City FC\u2019s PPDA is relatively high at 19.0, indicating a more measured pressing approach to b",
+          "foundry": {
+            "groundedness": 4.0,
+            "relevance": 1.0
+          }
+        }
+      },
+      {
+        "insight_id": "ins_f2ff70dbd501",
+        "minute": 54,
+        "category": "TURNING_POINT",
+        "naive": {
+          "untraceable_numbers": 0,
+          "numbers": 4,
+          "judge": {
+            "n": 6,
+            "supported": 2,
+            "unsupported": 4,
+            "contradicted": 0,
+            "judge_failed": false
+          },
+          "chars": 483,
+          "text": "At the 54:52 mark, Thames Athletic's Harry Vance completed a crucial pass that helped maintain their attacking momentum against Azure City FC. This pass is significant because it sustains Thames Athletic's pressure while they hold a 1-0 lead, preventing Azure City from settling into possession. Tactically, it shows Thames Athletic's intent to control the midfield and dictate the game's tempo, forcing Azure City to chase the ball and potentially open up spaces for counterattacks.",
+          "foundry": {
+            "groundedness": 4.0,
+            "relevance": 5.0
+          }
+        },
+        "grounded": {
+          "untraceable_numbers": 0,
+          "numbers": 9,
+          "judge": {
+            "n": 9,
+            "supported": 8,
+            "unsupported": 1,
+            "contradicted": 0,
+            "judge_failed": false
+          },
+          "chars": 531,
+          "text": "Azure City FC Exposed in Fast Transitions. Azure City FC's 38.5 m defensive line height creates space behind for Thames Athletic to exploit via rapid counterattacks, achieving 2 fast transitions in 10 minutes (1.6 per 10 min baseline). This transition vulnerability indicates a mismatch between Azure City's PPDA (8.5 last 5 min) and their defensive compactness (1409 m\u00b2), allowing Thames Athletic to reach the final third or shoot within 12 seconds, pressuring Azure City's defensive structure and increasing expected goal threat.",
+          "foundry": {
+            "groundedness": 5.0,
+            "relevance": 5.0
+          }
+        },
+        "pipeline": {
+          "untraceable_numbers": 0,
+          "numbers": 9,
+          "judge": {
+            "n": 9,
+            "supported": 8,
+            "unsupported": 1,
+            "contradicted": 0,
+            "judge_failed": false
+          },
+          "chars": 531,
+          "text": "Azure City FC Exposed in Fast Transitions. Azure City FC's 38.5 m defensive line height creates space behind for Thames Athletic to exploit via rapid counterattacks, achieving 2 fast transitions in 10 minutes (1.6 per 10 min baseline). This transition vulnerability indicates a mismatch between Azure City's PPDA (8.5 last 5 min) and their defensive compactness (1409 m\u00b2), allowing Thames Athletic to reach the final third or shoot within 12 seconds, pressuring Azure City's defensive structure and increasing expected goal threat.",
+          "foundry": {
+            "groundedness": 5.0,
+            "relevance": 5.0
+          }
+        }
+      },
+      {
+        "insight_id": "ins_67e595e0836f",
+        "minute": 16,
+        "category": "TURNING_POINT",
+        "naive": {
+          "untraceable_numbers": 0,
+          "numbers": 2,
+          "judge": {
+            "n": 7,
+            "supported": 2,
+            "unsupported": 5,
+            "contradicted": 0,
+            "judge_failed": false
+          },
+          "chars": 594,
+          "text": "At the 16:19 mark in the match between Azure City FC and Thames Athletic, Mikel Etxeberria completed a pass, maintaining possession for Thames Athletic. While it might seem like a routine moment, such passes are crucial in building up play and controlling the tempo early in the game. Tactically, this indicates Thames Athletic's approach to patiently circulate the ball and probe Azure City's defensive structure, aiming to create openings without rushing forward. Maintaining possession in these early stages helps set the tone and can lead to more effective attacking opportunities later on.",
+          "foundry": {
+            "groundedness": 5.0,
+            "relevance": 5.0
+          }
+        },
+        "grounded": {
+          "untraceable_numbers": 0,
+          "numbers": 9,
+          "judge": {
+            "n": 8,
+            "supported": 8,
+            "unsupported": 0,
+            "contradicted": 0,
+            "judge_failed": false
+          },
+          "chars": 668,
+          "text": "Azure City FC Exposed in Fast Transitions. Azure City FC's defensive structure shows a line height of 38.9 meters over the last 5 minutes, which is relatively high and contributes to vulnerability in transition phases. Thames Athletic capitalizes on this by executing 2 fast transitions in 10 minutes\u2014defined as breaks from their own half reaching the final third or shots within 12 seconds\u2014above the baseline rate of 1.23 per 10 minutes. Azure City FC's PPDA of 3.5 in the last 5 minutes suggests moderate pressing intensity, but it is insufficient to prevent these rapid counterattacks, reflecting ",
+          "foundry": {
+            "groundedness": 4.0,
+            "relevance": 5.0
+          }
+        },
+        "pipeline": {
+          "untraceable_numbers": 0,
+          "numbers": 9,
+          "judge": {
+            "n": 10,
+            "supported": 10,
+            "unsupported": 0,
+            "contradicted": 0,
+            "judge_failed": false
+          },
+          "chars": 593,
+          "text": "Azure City FC Exposed in Fast Transitions. Azure City FC\u2019s defensive line height at 38.9 meters combined with a PPDA of 3.5 over the last 5 minutes suggests aggressive pressing but leaves them exposed in transition. Thames Athletic exploits this by executing 2 fast transitions in 10 minutes, reaching the final third or shooting within 12 seconds, a rate of 1.2 per 10 minutes compared to a baseline of 1.23. This tactical pattern highlights a mismatch between Azure City FC\u2019s pressing intensity and their ability to recover defensively, increasing the risk of conceding quick counterattacks.",
+          "foundry": {
+            "groundedness": 5.0,
+            "relevance": 5.0
+          }
+        }
+      },
+      {
+        "insight_id": "ins_66191f724595",
+        "minute": 55,
+        "category": "TACTICAL_SHIFT",
+        "naive": {
+          "untraceable_numbers": 0,
+          "numbers": 3,
+          "judge": {
+            "n": 6,
+            "supported": 2,
+            "unsupported": 4,
+            "contradicted": 0,
+            "judge_failed": false
+          },
+          "chars": 541,
+          "text": "At the 55th minute mark, Luca Ferri of Azure City FC made a crucial interception, halting Thames Athletic's attack and preventing a potential goal-scoring opportunity. This moment is significant because Thames Athletic was leading 1-0 and looking to extend their advantage, so Ferri's defensive awareness helped keep Azure City FC in the game. Tactically, this interception highlights Azure City's commitment to pressing and disrupting the opponent's build-up play, aiming to regain possession quickly and launch counter-attacks to equalize.",
+          "foundry": {
+            "groundedness": 5.0,
+            "relevance": 5.0
+          }
+        },
+        "grounded": {
+          "untraceable_numbers": 0,
+          "numbers": 9,
+          "judge": {
+            "n": 8,
+            "supported": 7,
+            "unsupported": 1,
+            "contradicted": 0,
+            "judge_failed": false
+          },
+          "chars": 684,
+          "text": "Thames Athletic Overloads Right Flank to Attack. Since minute 55, Thames Athletic has executed a flank overload on the right side, accounting for 67% (10/15) of their attacking-half actions over 7 minutes, focusing on a 2v1 attacker-defender situation. This strategic concentration aims to destabilize Azure City FC's defensive structure, which currently holds a line height of 42.1 meters, by stretching their defensive compactness (1397 m2) and exploiting numerical superiority with players such as Leon Adeyemi, Felix Novak, and Ibrahim Sow. The pattern's confidence is 0.65, indicating a reliable",
+          "foundry": {
+            "groundedness": 4.0,
+            "relevance": 5.0
+          }
+        },
+        "pipeline": {
+          "untraceable_numbers": 0,
+          "numbers": 9,
+          "judge": {
+            "n": 8,
+            "supported": 7,
+            "unsupported": 1,
+            "contradicted": 0,
+            "judge_failed": false
+          },
+          "chars": 684,
+          "text": "Thames Athletic Overloads Right Flank to Attack. Since minute 55, Thames Athletic has executed a flank overload on the right side, accounting for 67% (10/15) of their attacking-half actions over 7 minutes, focusing on a 2v1 attacker-defender situation. This strategic concentration aims to destabilize Azure City FC's defensive structure, which currently holds a line height of 42.1 meters, by stretching their defensive compactness (1397 m2) and exploiting numerical superiority with players such as Leon Adeyemi, Felix Novak, and Ibrahim Sow. The pattern's confidence is 0.65, indicating a reliable",
+          "foundry": {
+            "groundedness": 4.0,
+            "relevance": 5.0
+          }
+        }
+      },
+      {
+        "insight_id": "ins_b4aedfbb2e16",
+        "minute": 69,
+        "category": "TACTICAL_SHIFT",
+        "naive": {
+          "untraceable_numbers": 0,
+          "numbers": 4,
+          "judge": {
+            "n": 6,
+            "supported": 3,
+            "unsupported": 3,
+            "contradicted": 0,
+            "judge_failed": false
+          },
+          "chars": 556,
+          "text": "At the 69:47 mark in this tightly contested Showcase League match between Azure City FC and Thames Athletic, Harry Vance executed a crucial tackle to regain possession for Thames Athletic. With the score tied at 1\u20131, this defensive intervention was vital in disrupting Azure City's attacking momentum and preventing a potential scoring opportunity. Tactically, Vance's timing and positioning highlight Thames Athletic's commitment to aggressive pressing and quick transitions, aiming to capitalize on turnovers and shift the game's momentum in their favor.",
+          "foundry": {
+            "groundedness": 5.0,
+            "relevance": 5.0
+          }
+        },
+        "grounded": {
+          "untraceable_numbers": 0,
+          "numbers": 8,
+          "judge": {
+            "n": 7,
+            "supported": 4,
+            "unsupported": 3,
+            "contradicted": 0,
+            "judge_failed": false
+          },
+          "chars": 638,
+          "text": "Thames Athletic Drops Into Deep Defensive Block. Over the last 5 minutes, Thames Athletic\u2019s defensive line height has decreased to 22.6 m, 7 m deeper than their 29.6 m match average, indicating a strategic shift to a deep block in their own defensive third. This adjustment likely aims to mitigate Azure City FC\u2019s transition threat, as Thames Athletic\u2019s line at 22.6 m compresses space behind, reducing Azure\u2019s ability to exploit fast breaks and high xG opportunities. The deep block also coincides with Thames Athletic\u2019s lower PPDA (3.83 in last 5 min vs. 6.59 match average), reflecting intensified",
+          "foundry": {
+            "groundedness": 5.0,
+            "relevance": 5.0
+          }
+        },
+        "pipeline": {
+          "untraceable_numbers": 0,
+          "numbers": 8,
+          "judge": {
+            "n": 7,
+            "supported": 4,
+            "unsupported": 3,
+            "contradicted": 0,
+            "judge_failed": false
+          },
+          "chars": 638,
+          "text": "Thames Athletic Drops Into Deep Defensive Block. Over the last 5 minutes, Thames Athletic\u2019s defensive line height has decreased to 22.6 m, 7 m deeper than their 29.6 m match average, indicating a strategic shift to a deep block in their own defensive third. This adjustment likely aims to mitigate Azure City FC\u2019s transition threat, as Thames Athletic\u2019s line at 22.6 m compresses space behind, reducing Azure\u2019s ability to exploit fast breaks and high xG opportunities. The deep block also coincides with Thames Athletic\u2019s lower PPDA (3.83 in last 5 min vs. 6.59 match average), reflecting intensified",
+          "foundry": {
+            "groundedness": 5.0,
+            "relevance": 5.0
+          }
+        }
+      },
+      {
+        "insight_id": "ins_341ab8bf5be1",
+        "minute": 58,
+        "category": "HIGH_PRESS",
+        "naive": {
+          "untraceable_numbers": 0,
+          "numbers": 2,
+          "judge": {
+            "n": 6,
+            "supported": 3,
+            "unsupported": 3,
+            "contradicted": 0,
+            "judge_failed": false
+          },
+          "chars": 442,
+          "text": "At 58:14 in the match, Theo Laurent of Azure City FC made a crucial interception, halting Thames Athletic's attack. This moment is significant because it stops the visiting team from potentially extending their lead, keeping Azure City FC within reach. Tactically, Laurent's interception demonstrates Azure City's commitment to pressing and disrupting Thames' build-up play, aiming to regain possession and launch a counterattack to equalize.",
+          "foundry": {
+            "groundedness": 5.0,
+            "relevance": 5.0
+          }
+        },
+        "grounded": {
+          "untraceable_numbers": 0,
+          "numbers": 6,
+          "judge": {
+            "n": 7,
+            "supported": 7,
+            "unsupported": 0,
+            "contradicted": 0,
+            "judge_failed": false
+          },
+          "chars": 610,
+          "text": "Azure City FC Launches Intense High Press. Azure City FC\u2019s newly detected high press pattern features a PPDA of 2.83 in the last 5 minutes with 9 pressures in the opponent half, significantly higher than their match average PPDA of 5.42. Defensive actions are concentrated around the 65-meter mark, evidencing a high line of engagement aimed at disrupting Thames Athletic\u2019s build-up in their defensive third. This tactical shift likely seeks to exploit Thames Athletic\u2019s vulnerability in transition, as their defensive line sits at 42.1 meters, creating space behind for Azure City FC to counterattac",
+          "foundry": {
+            "groundedness": 5.0,
+            "relevance": 3.0
+          }
+        },
+        "pipeline": {
+          "untraceable_numbers": 0,
+          "numbers": 6,
+          "judge": {
+            "n": 7,
+            "supported": 7,
+            "unsupported": 0,
+            "contradicted": 0,
+            "judge_failed": false
+          },
+          "chars": 610,
+          "text": "Azure City FC Launches Intense High Press. Azure City FC\u2019s newly detected high press pattern features a PPDA of 2.83 in the last 5 minutes with 9 pressures in the opponent half, significantly higher than their match average PPDA of 5.42. Defensive actions are concentrated around the 65-meter mark, evidencing a high line of engagement aimed at disrupting Thames Athletic\u2019s build-up in their defensive third. This tactical shift likely seeks to exploit Thames Athletic\u2019s vulnerability in transition, as their defensive line sits at 42.1 meters, creating space behind for Azure City FC to counterattac",
+          "foundry": {
+            "groundedness": 5.0,
+            "relevance": 3.0
+          }
+        }
+      },
+      {
+        "insight_id": "ins_de127f5d7bbf",
+        "minute": 76,
+        "category": "TACTICAL_SHIFT",
+        "naive": {
+          "untraceable_numbers": 0,
+          "numbers": 4,
+          "judge": {
+            "n": 5,
+            "supported": 2,
+            "unsupported": 3,
+            "contradicted": 0,
+            "judge_failed": false
+          },
+          "chars": 619,
+          "text": "At the 76:45 mark in a tightly contested match between Azure City FC and Thames Athletic, Thames Athletic made a strategic substitution, bringing on Jamal Pierce. This change is crucial as it signals the coach's intent to either inject fresh energy or alter the tactical approach to break the deadlock at 1-1. Tactically, introducing a new player at this stage can help Thames Athletic press higher, maintain possession, or exploit specific weaknesses in Azure City's defense. This substitution could be a turning point, potentially shifting momentum in Thames Athletic's favor as the game approaches",
+          "foundry": {
+            "groundedness": 5.0,
+            "relevance": 5.0
+          }
+        },
+        "grounded": {
+          "untraceable_numbers": 0,
+          "numbers": 15,
+          "judge": {
+            "n": 13,
+            "supported": 12,
+            "unsupported": 1,
+            "contradicted": 0,
+            "judge_failed": false
+          },
+          "chars": 767,
+          "text": "Thames Athletic Sub Jamal Pierce to Chase Winner. At 76:45, Thames Athletic executed an attacking substitution, bringing on Jamal Pierce (ST, penalty-box finisher) for Jack Holloway (DM) to chase a winner in a 1-1 game. Before the substitution, Thames Athletic had 11 final third entries and an xG of 0.09 involving Holloway, while Pierce had no final third entries and an xG of 0.63 overall, indicating fresh attacking impetus. Thames Athletic's defensive line was at 42.1 meters, but they were vulnerable in transition, with Azure City FC exploiting this twice in the last 10 minutes (1.4 per 10 mi",
+          "foundry": {
+            "groundedness": 5.0,
+            "relevance": 5.0
+          }
+        },
+        "pipeline": {
+          "untraceable_numbers": 0,
+          "numbers": 15,
+          "judge": {
+            "n": 13,
+            "supported": 12,
+            "unsupported": 1,
+            "contradicted": 0,
+            "judge_failed": false
+          },
+          "chars": 767,
+          "text": "Thames Athletic Sub Jamal Pierce to Chase Winner. At 76:45, Thames Athletic executed an attacking substitution, bringing on Jamal Pierce (ST, penalty-box finisher) for Jack Holloway (DM) to chase a winner in a 1-1 game. Before the substitution, Thames Athletic had 11 final third entries and an xG of 0.09 involving Holloway, while Pierce had no final third entries and an xG of 0.63 overall, indicating fresh attacking impetus. Thames Athletic's defensive line was at 42.1 meters, but they were vulnerable in transition, with Azure City FC exploiting this twice in the last 10 minutes (1.4 per 10 mi",
+          "foundry": {
+            "groundedness": 5.0,
+            "relevance": 5.0
+          }
+        }
+      },
+      {
+        "insight_id": "ins_b2f1d218d428",
+        "minute": 45,
+        "category": "TACTICAL_SHIFT",
+        "naive": {
+          "untraceable_numbers": 0,
+          "numbers": 2,
+          "judge": {
+            "n": 9,
+            "supported": 5,
+            "unsupported": 4,
+            "contradicted": 0,
+            "judge_failed": false
+          },
+          "chars": 512,
+          "text": "At the stroke of halftime, Azure City FC made a crucial substitution, bringing on Noah Kessler as they trail 0-1 against Thames Athletic. This change is significant as it signals the coach's intent to alter the game's momentum before the break, possibly injecting fresh energy or a tactical shift to break down Thames' defense. Tactically, introducing Kessler could mean bolstering the midfield or adding more attacking impetus, aiming to level the score early in the second half and regain control of the match.",
+          "foundry": {
+            "groundedness": 5.0,
+            "relevance": 5.0
+          }
+        },
+        "grounded": {
+          "untraceable_numbers": 1,
+          "numbers": 18,
+          "judge": {
+            "n": 14,
+            "supported": 12,
+            "unsupported": 2,
+            "contradicted": 0,
+            "judge_failed": false
+          },
+          "chars": 757,
+          "text": "Azure City FC brings on direct winger Noah Kessler at halftime. At halftime (45:01), Azure City FC introduced Noah Kessler for Rafael Costa to boost directness on the left wing, shifting their nominal 4-3-3 to a 4-1-2-3 possession shape. Costa had higher influence (24.11) but Kessler\u2019s role as a direct inverted winger is designed to counter Thames Athletic\u2019s compact 6-3-1 defensive shape and right flank overload (65% of attacking actions on that side). Azure City FC\u2019s PPDA (5.31) and progressive passes (61) indicate aggressive pressing and possession, but their xG (0.21) lags behind Thames Ath",
+          "foundry": {
+            "groundedness": 5.0,
+            "relevance": 5.0
+          }
+        },
+        "pipeline": {
+          "untraceable_numbers": 0,
+          "numbers": 15,
+          "judge": {
+            "n": 5,
+            "supported": 4,
+            "unsupported": 0,
+            "contradicted": 1,
+            "judge_failed": false
+          },
+          "chars": 713,
+          "text": "Azure City FC makes tactical substitution at halftime. Azure City FC, trailing 0-1, executed a tactical halftime substitution, bringing on Noah Kessler for Rafael Costa to add directness on the left wing. Azure City FC holds 50.6% possession and a field tilt of 52.1%, with an xG of 0.21 compared to Thames Athletic's 0.29. Thames Athletic's compact 6-3-1 defensive shape and a defensive line at 42.1 meters have limited Azure City's progressive passes (61 vs 40 for Thames) and created vulnerability in transitions, exploited twice in the last 10 minutes. The substitution aims to increase penetrati",
+          "foundry": {
+            "groundedness": 5.0,
+            "relevance": 5.0
+          }
+        }
+      },
+      {
+        "insight_id": "ins_6b87a619eebd",
+        "minute": 66,
+        "category": "TACTICAL_SHIFT",
+        "naive": {
+          "untraceable_numbers": 0,
+          "numbers": 3,
+          "judge": {
+            "n": 3,
+            "supported": 1,
+            "unsupported": 2,
+            "contradicted": 0,
+            "judge_failed": false
+          },
+          "chars": 446,
+          "text": "At the 66th minute mark, Thames Athletic made a tactical substitution, bringing on Tom\u00e1s Reyes. This change is significant as it indicates the coach's intent to either inject fresh energy or alter the team's formation to break the deadlock in this 1-1 match. Reyes' introduction could provide more creativity or defensive solidity, depending on his role, aiming to tip the balance in Thames Athletic's favor during this crucial phase of the game.",
+          "foundry": {
+            "groundedness": 4.0,
+            "relevance": 5.0
+          }
+        },
+        "grounded": {
+          "untraceable_numbers": 0,
+          "numbers": 22,
+          "judge": {
+            "n": 10,
+            "supported": 9,
+            "unsupported": 1,
+            "contradicted": 0,
+            "judge_failed": false
+          },
+          "chars": 763,
+          "text": "Thames Athletic Substitutes Reyes to Protect Draw. At 66:08, Thames Athletic executed a defensive substitution, replacing Felix Novak (influence 40.52, 38 passes completed, 9 pressures) with Tom\u00e1s Reyes (influence 18.7, 15 passes completed, 2 defensive actions). This move transitions Thames from a 4-2-3-1 nominal shape to a more compact 6-2-2 out-of-possession formation, reinforcing the midfield to counter Azure City FC\u2019s aggressive high press (PPDA 5.18) and frequent fast transitions (2 in last 10 minutes). The substitution aims to protect the 1-1 draw by reducing Thames\u2019 offensive risk while",
+          "foundry": {
+            "groundedness": 5.0,
+            "relevance": 5.0
+          }
+        },
+        "pipeline": {
+          "untraceable_numbers": 0,
+          "numbers": 22,
+          "judge": {
+            "n": 10,
+            "supported": 9,
+            "unsupported": 1,
+            "contradicted": 0,
+            "judge_failed": false
+          },
+          "chars": 763,
+          "text": "Thames Athletic Substitutes Reyes to Protect Draw. At 66:08, Thames Athletic executed a defensive substitution, replacing Felix Novak (influence 40.52, 38 passes completed, 9 pressures) with Tom\u00e1s Reyes (influence 18.7, 15 passes completed, 2 defensive actions). This move transitions Thames from a 4-2-3-1 nominal shape to a more compact 6-2-2 out-of-possession formation, reinforcing the midfield to counter Azure City FC\u2019s aggressive high press (PPDA 5.18) and frequent fast transitions (2 in last 10 minutes). The substitution aims to protect the 1-1 draw by reducing Thames\u2019 offensive risk while",
+          "foundry": {
+            "groundedness": 5.0,
+            "relevance": 5.0
+          }
+        }
+      }
+    ]
+  },
+  "translation": {
+    "translations": 24,
+    "verified_pct": 91.7,
+    "first_try_pct": 70.8,
+    "languages": [
+      "es",
+      "ar",
+      "hi"
+    ]
+  }
+}

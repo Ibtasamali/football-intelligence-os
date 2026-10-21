@@ -1,0 +1,97 @@
+{
+  "thresholds": {
+    "press_ppda_max": 4.5,
+    "press_opp_half_min": 9,
+    "press_defx_min": 56.0,
+    "flank_share_min": 0.55,
+    "flank_actions_min": 14,
+    "block_line_max": 23.0,
+    "block_drop_min": 4.0,
+    "trans_fast_min": 2.0,
+    "trans_ratio_min": 1.0,
+    "trans_line_min": 38.0,
+    "mid_avg_min": 1.6
+  },
+  "training": {
+    "HIGH_PRESS": {
+      "train_f1": 0.707,
+      "train_precision": 0.728,
+      "train_recall": 0.688,
+      "thresholds": {
+        "press_ppda_max": 7.0,
+        "press_opp_half_min": 9.0,
+        "press_defx_min": 48.0
+      }
+    },
+    "FLANK_OVERLOAD": {
+      "train_f1": 0.75,
+      "train_precision": 0.743,
+      "train_recall": 0.758,
+      "thresholds": {
+        "flank_share_min": 0.475,
+        "flank_actions_min": 12.0
+      }
+    },
+    "DEEP_BLOCK": {
+      "train_f1": 0.805,
+      "train_precision": 0.923,
+      "train_recall": 0.713,
+      "thresholds": {
+        "block_line_max": 23.5,
+        "block_drop_min": 1.0
+      }
+    },
+    "TRANSITION_VULNERABILITY": {
+      "train_f1": 0.558,
+      "train_precision": 0.718,
+      "train_recall": 0.456,
+      "thresholds": {
+        "trans_fast_min": 2.0,
+        "trans_ratio_min": 1.0,
+        "trans_line_min": 38.0
+      }
+    }
+  },
+  "train_seeds": "0\u201329",
+  "previous": {
+    "press_ppda_max": 4.5,
+    "press_opp_half_min": 9,
+    "press_defx_min": 56.0,
+    "flank_share_min": 0.55,
+    "flank_actions_min": 14,
+    "block_line_max": 23.0,
+    "block_drop_min": 4.0,
+    "trans_fast_min": 3,
+    "trans_ratio_min": 1.6,
+    "trans_line_min": 31.0,
+    "mid_avg_min": 1.6
+  },
+  "selection": {
+    "validation_seeds": "30\u201359",
+    "HIGH_PRESS": {
+      "choice": "hand-set",
+      "val_f1_hand": 0.609,
+      "val_f1_supervised": 0.488
+    },
+    "FLANK_OVERLOAD": {
+      "choice": "hand-set",
+      "val_f1_hand": 0.708,
+      "val_f1_supervised": 0.591
+    },
+    "DEEP_BLOCK": {
+      "choice": "hand-set",
+      "val_f1_hand": 0.937,
+      "val_f1_supervised": 0.906
+    },
+    "TRANSITION_VULNERABILITY": {
+      "choice": "supervised",
+      "val_f1_hand": 0.381,
+      "val_f1_supervised": 0.629
+    },
+    "MIDFIELD_SUPERIORITY": {
+      "choice": "hand-set",
+      "val_f1_hand": 0,
+      "val_f1_supervised": 0
+    }
+  }
+}

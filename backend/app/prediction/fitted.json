@@ -1,0 +1,30 @@
+{
+  "goal_threat": {
+    "features": [
+      "xg_10",
+      "shots_10"
+    ],
+    "mean": [
+      0.10018722901064211,
+      1.0804099329917225
+    ],
+    "std": [
+      0.1836120548230343,
+      1.2316603193503504
+    ],
+    "weights": [
+      -2.462936492730056,
+      -0.2597870695608473,
+      0.42839691662144636
+    ],
+    "cv_auc": 0.566,
+    "cv_brier_skill": 0.0015
+  },
+  "xg": {
+    "intercept": -1.4856,
+    "distance": -0.0966,
+    "angle": 1.4959,
+    "header": -1.3805
+  },
+  "trained_on": "24 real matches (StatsBomb Open Data), 8 held out"
+}

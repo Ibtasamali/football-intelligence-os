@@ -1,0 +1,84 @@
+{
+  "goal_threat": {
+    "features": [
+      "xg_10",
+      "shots_10"
+    ],
+    "samples": 5074,
+    "positives": 417,
+    "validation": "grouped 5-fold CV by match",
+    "brier_model": 0.0757,
+    "brier_constant": 0.07581,
+    "logloss_model": 0.2844,
+    "logloss_constant": 0.2866,
+    "auc": 0.566,
+    "reliability": [
+      {
+        "bin": "0.00\u20130.06",
+        "n": 911,
+        "mean_predicted": 0.054,
+        "observed_rate": 0.083
+      },
+      {
+        "bin": "0.06\u20130.08",
+        "n": 2174,
+        "mean_predicted": 0.071,
+        "observed_rate": 0.057
+      },
+      {
+        "bin": "0.08\u20130.10",
+        "n": 1063,
+        "mean_predicted": 0.089,
+        "observed_rate": 0.089
+      },
+      {
+        "bin": "0.10\u20130.13",
+        "n": 589,
+        "mean_predicted": 0.113,
+        "observed_rate": 0.143
+      },
+      {
+        "bin": "0.13\u20131.00",
+        "n": 337,
+        "mean_predicted": 0.172,
+        "observed_rate": 0.11
+      }
+    ],
+    "coefficients_standardised": {
+      "intercept": -2.463,
+      "xg_10": -0.26,
+      "shots_10": 0.428
+    },
+    "brier_skill_score": 0.0015
+  },
+  "xg": {
+    "train_shots": 521,
+    "test_shots": 189,
+    "test_goals": 12,
+    "brier_fitted": 0.0498,
+    "brier_previous_handset": 0.0557,
+    "brier_statsbomb": 0.0504,
+    "brier_constant": 0.0601,
+    "logloss_fitted": 0.2025,
+    "logloss_statsbomb": 0.1939,
+    "pearson_r_vs_statsbomb": 0.747,
+    "mean_fitted": 0.098,
+    "observed_rate": 0.063,
+    "coefficients": {
+      "intercept": -1.4856,
+      "distance": -0.0966,
+      "angle": 1.4959,
+      "header": -1.3805
+    }
+  },
+  "test_matches": [
+    "sb-3857254",
+    "sb-3857260",
+    "sb-3857274",
+    "sb-3857278",
+    "sb-3857288",
+    "sb-3857297",
+    "sb-3930170",
+    "sb-3930183"
+  ]
+}

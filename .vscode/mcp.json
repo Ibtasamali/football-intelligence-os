@@ -1,0 +1,10 @@
+{
+  "servers": {
+    "football-intelligence-os": {
+      "type": "stdio",
+      "command": "${workspaceFolder}/backend/.venv/bin/python",
+      "args": ["${workspaceFolder}/backend/mcp_server.py"],
+      "env": { "FIOS_API": "http://localhost:8077" }
+    }
+  }
+}

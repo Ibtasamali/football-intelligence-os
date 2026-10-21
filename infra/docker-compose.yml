@@ -1,0 +1,27 @@
+# Local full stack: docker compose -f infra/docker-compose.yml up --build
+# Azure credentials are read from backend/.env (never baked into images).
+services:
+  mongo:
+    image: mongo:7
+    ports: ["27017:27017"]
+    volumes: [mongo-data:/data/db]
+  redis:
+    image: redis:7-alpine
+    ports: ["6379:6379"]
+  backend:
+    build: ../backend
+    env_file: ../backend/.env
+    environment:
+      MONGODB_URI: mongodb://mongo:27017
+      REDIS_URL: redis://redis:6379/0
+      CORS_ORIGINS: '["http://localhost:8080"]'
+    depends_on: [mongo, redis]
+    ports: ["8077:8000"]
+  frontend:
+    build: ../frontend
+    environment:
+      BACKEND_URL: http://backend:8000
+    depends_on: [backend]
+    ports: ["8080:80"]
+volumes:
+  mongo-data:
