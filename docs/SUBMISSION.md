@@ -29,8 +29,8 @@ output), Azure AI Speech (neural TTS in 14 languages, STT), Azure AI Document In
 designed for Azure Container Apps, Azure Cosmos DB for MongoDB vCore (vector search), Azure Cache for Redis, Azure Web
 PubSub, Key Vault, Application Insights and Entra ID (Bicep included).
 
-**Impact:** about $0.05 of LLM per match; 99% of events never touch an LLM; unsupported claims cut from 58% to 11%; Foundry groundedness ≥ 4 on 100% of texts; one verified insight is shared by every
-viewer and language. See `docs/EVALUATION.md`.
+**Impact:** about $0.05 of LLM per match; 99% of events never touch an LLM; unsupported claims cut from 58% to 11%; Microsoft Foundry groundedness ≥ 4 on 100% of pipeline answers; one verified insight is
+shared by every viewer and language. See `docs/EVALUATION.md`.
 
 ## 3. Two-minute video (rule: < 2:00, show it running, no third-party trademarks or copyrighted music)
 
@@ -44,13 +44,17 @@ the link.
 |---|---|---|
 | 0:00 | Synthetic match starts, 3D stadium | "Every pass, press and shot is an event. Most cost zero tokens." |
 | 0:10 | *High press* / *flank overload* detected | "Thirty agents, orchestrated by LangGraph, detect tactics from the data alone." |
-| 0:25 | Goal, then **Why?** panel | "Every claim is verified against events and numbers. No hallucinated stats." |
-| 0:40 | Cards switch to Urdu | "Fourteen languages, re-verified after translation, native Azure voices." |
-| 0:50 | Copilot answers "Why did Thames Athletic score?" | "Fans just ask: memory, retrieval and reasoning through Azure OpenAI in Foundry." |
-| 1:10 | **What-if lab** moves a defender | "Move a player and a pitch-control model recomputes the danger." |
-| 1:20 | Late counter-attack: the AI flags it, then the goal | "It saw the counter coming." |
-| 1:35 | Match story | "Thousands of events become a verified story, for about five cents." |
-| 1:50 | End card | "Football Intelligence OS. Every match, every moment, explained by AI." |
+| 0:28 | Goal, then **Why?** panel | "Every claim is verified against events and numbers. No hallucinated stats." |
+| 0:33 | Cards switch to Urdu | "Fourteen languages, re-verified after translation, native Azure voices." |
+| 0:36 | Copilot answers "Why did Thames Athletic score?" | "Fans just ask: memory, retrieval and reasoning through Azure OpenAI in Foundry." |
+| 0:49 | **What-if lab** moves a defender | "Move a player and a pitch-control model recomputes the danger." |
+| 0:57 | Late counter-attack: the AI flags it, then the goal | "It saw the counter coming." |
+| 1:12 | Match story | "Thousands of events become a verified story, for about five cents." |
+| 1:22 | **Recap Studio** | "One click: lower-third, social post, push, newsletter and a two-host podcast." |
+| 1:28 | **Coach report** (Microsoft Agent Framework) | "An Agent Framework desk writes a verified coach report and PDF." |
+| 1:32 | **Traces** (OpenTelemetry) | "Every agent handoff is observable in production." |
+| 1:38 | **Accessibility mode** | "Built for every fan, including blind and low-vision supporters." |
+| 1:44 | End card | "Football Intelligence OS. Every match, every moment, explained by AI." |
 
 No copyrighted music. All club and player names are fictional (synthetic data). Don't show real club logos or league
 branding.
@@ -65,7 +69,7 @@ branding.
 
 ## 5. Checklist before submitting (deadline October 27)
 - [ ] **Rotate the Azure keys** that were shared in chat; put the new ones only in `backend/.env` (gitignored).
-- [ ] Create a **public GitHub repository** and push the project (`.env`, `data_cache/`, logs are already gitignored).
+- [x] **Public GitHub repository**: https://github.com/Ibtasamali/football-intelligence-os
 - [ ] Record and upload the **< 2-minute video** (above). Check it is under 2:00.
 - [ ] Paste the **pitch** (section 2), the video URL and the GitHub URL on the project page.
 - [ ] Optional: deploy to **Azure Container Apps** for a live URL (`infra/azure/deploy.sh`).
