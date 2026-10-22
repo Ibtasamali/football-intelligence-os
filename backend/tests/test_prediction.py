@@ -18,7 +18,7 @@ def test_next_action_distribution(played):
 
 
 def test_goal_threat_is_fitted_and_calibrated_range(played):
-    """Fitted on real matches (eval/fit_models.py): rare-event probabilities near the real base rate (~8%)."""
+    """Fitted coefficients (app/prediction/fitted.json): rare-event probabilities near the base rate (~8%)."""
     eng, _, _ = played
     g = goal_threat(eng, "azc", [])
     assert "fitted" in g["model"] and 0.01 < g["p_goal_next_10"] < 0.4

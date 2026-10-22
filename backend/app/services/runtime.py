@@ -14,7 +14,7 @@ class MatchRuntime:
         self.match = match
         self.match_id = match.match_id
         self.engine = TacticalEngine(match.match_id, match.home_team_id, match.away_team_id)
-        self.patterns = PatternTracker("statsbomb" if match.source == "statsbomb" else "synthetic")
+        self.patterns = PatternTracker("synthetic")
         self.insights: list[Insight] = []
         self.answers: dict[str, Insight] = {}
         self.last_deep_t = -999

@@ -42,10 +42,6 @@ class Settings(BaseSettings):
     vector_backend: str = "local"
     redis_url: str = ""
 
-    # Hackathon rule: projects must use synthetic, football-realistic data. Real open data (StatsBomb) is only
-    # an optional offline-validation adapter and is OFF by default.
-    enable_real_data: bool = False
-
     # Pipeline tuning
     significance_threshold: float = 0.25
     large_model_threshold: float = 0.7

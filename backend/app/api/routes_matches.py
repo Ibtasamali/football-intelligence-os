@@ -15,9 +15,7 @@ from app.data.teams import AWAY_ID, HOME_ID
 from app.models.domain import Match
 from app.prediction.models import predict
 from app.schemas.api import CreateMatchRequest, JumpRequest, ReplaySpeedRequest
-from app.data.statsbomb import ATTRIBUTION, CURATED, load_match
-from app.services.archive import build_archive
-from app.services.replay import SYNTHETIC_JUMPS, ReplayController, real_match_pacing
+from app.services.replay import SYNTHETIC_JUMPS, ReplayController
 
 router = APIRouter(prefix="/api/matches", tags=["matches"])
 TIMELINE_CATEGORIES = {"GOAL", "TURNING_POINT", "TACTICAL_SHIFT", "HIGH_PRESS", "DANGEROUS_ATTACK", "PLAYER_IMPACT", "MOMENTUM_SHIFT"}
@@ -28,10 +26,7 @@ catalog_router = APIRouter(prefix="/api/catalog", tags=["matches"])
 
 @catalog_router.get("/matches")
 async def catalog(c=Depends(container)):
-    out = [{"key": "demo", "label": "Azure City FC vs Thames Athletic · synthetic match", "source": "synthetic"}]
-    if c.settings.enable_real_data:
-        out += [{"key": x["key"], "label": x["label"], "source": "statsbomb", "attribution": ATTRIBUTION} for x in CURATED]
-    return {"matches": out}
+    return {"matches": [{"key": "demo", "label": "Azure City FC vs Thames Athletic · synthetic match", "source": "synthetic"}]}
 
 
 @router.post("")
@@ -39,28 +34,8 @@ async def create_match(req: CreateMatchRequest, c=Depends(container), principal:
     old = getattr(c, "replays", {}).get(req.match_id)
     if old:
         old.stop()
-    if req.source == "statsbomb" and not c.settings.enable_real_data:
-        raise HTTPException(403, "Real match data is disabled: this project runs on synthetic, football-realistic data")
-    if req.source == "statsbomb":
-        cur = next((x for x in CURATED if x["key"] == (req.statsbomb_key or req.match_id)), None)
-        if not cur:
-            raise HTTPException(404, "Unknown StatsBomb match key — see GET /api/catalog/matches")
-        try:  # conversion is CPU-bound: run it off the event loop so the API stays responsive
-            match, events, info = await asyncio.to_thread(
-                lambda: asyncio.run(load_match(cur["sb_match_id"], cur["competition_id"], cur["season_id"], req.match_id)))
-        except Exception as exc:  # noqa: BLE001
-            raise HTTPException(502, f"Could not load StatsBomb data: {exc}") from exc
-        match.tenant_id = principal.tenant_id
-        rt = await c.create_match(match)
-        windows, jumps = real_match_pacing(events)
-        rt.jump_points = jumps
-        c.replays[req.match_id] = ReplayController(c, req.match_id, events, req.speed, req.director, slow_windows=windows)
-        rt.archive_task = asyncio.create_task(_archive(c, match))
-        if req.autostart:
-            c.replays[req.match_id].start()
-        audit("match_created", principal, match_id=req.match_id, source="statsbomb")
-        return {"match": match.model_dump(), "events_available": len(events),
-                "positions_from_360_pct": info["positions_from_360_pct"]}
+    if req.source != "synthetic":
+        raise HTTPException(400, "This project runs on synthetic, football-realistic data only")
     match = Match(match_id=req.match_id, home_team_id=HOME_ID, away_team_id=AWAY_ID, competition="Showcase League",
                   venue="Azure Arena", kickoff="2026-10-08T19:45:00Z", synthetic=req.source == "synthetic",
                   tenant_id=principal.tenant_id, score={HOME_ID: 0, AWAY_ID: 0})
@@ -203,20 +178,6 @@ async def get_story(match_id: str, c=Depends(container)):
     if not rt.engine.events:
         raise HTTPException(409, "Match has no events yet")
     return await c.story_service.build(rt, tier="large")
-
-
-async def _archive(c, match) -> None:
-    rt = c.runtimes.get(match.match_id)
-    try:
-        if rt:
-            rt.archive_status = {"status": "building"}
-        res = await build_archive(c, match)
-        if rt:
-            rt.archive_status = {"status": "ready", **res}
-        await c.broadcast(match.match_id, {"type": "archive_ready", **res})
-    except Exception as exc:  # noqa: BLE001
-        if rt:
-            rt.archive_status = {"status": "failed", "error": str(exc)[:200]}
 
 
 WHATIF_PROMPT = """You are a football tactics coach explaining a WHAT-IF experiment on a frozen match moment.

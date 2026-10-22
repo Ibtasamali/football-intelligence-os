@@ -6,11 +6,29 @@ A real-time, multi-agent football intelligence platform. It turns raw match even
 understanding, verified explanations, predictions, 3D visualization, voice and personalized fan
 experiences. Built on **LangGraph**, **FastAPI**, **MongoDB vector search** and **Azure OpenAI / Microsoft Foundry**.
 
-![Live match: synthetic data, AI detects a flank overload](docs/images/live-synthetic.png)
+**[▶ 2-minute demo video](docs/video/fios-2min-v3.mp4)** · **[Full walkthrough (every agent)](docs/video/fios-full-v3.mp4)** ·
+**[Pitch](docs/PITCH.md)** · **[Evaluation report](docs/EVALUATION.md)** · **[Architecture](docs/ARCHITECTURE.md)**
+
+![The AI detects a right-flank overload from the data alone, then the goal follows](docs/images/demo.gif)
 
 > **Data:** the product runs on **synthetic, football-realistic data** produced by our own match generator
 > (fictional clubs *Azure City FC* vs *Thames Athletic*, 22 tracked players, ~2,300 events per match), as the
 > hackathon requires. Real data is never shipped or used by the product.
+
+## For judges: running in 60 seconds
+
+```bash
+git clone https://github.com/Ibtasamali/football-intelligence-os.git && cd football-intelligence-os
+./run.sh          # installs on first run, starts backend :8077 + website :5188, opens the browser
+```
+
+1. A **60-second tour** opens on the first visit. Then press **✦ Auto Demo** and everything plays hands-free.
+2. Or drive it yourself: **Kick off** → click any insight's **Why?** → ask the **Copilot** (bottom right) a question →
+   open **Studio**, **Coach** and **Traces** in the left menu.
+3. No Azure keys? It still runs: deterministic fallbacks replace the LLM prose and the browser voice replaces Azure
+   neural voices. Add keys to `backend/.env` (template in `.env.example`) for the full experience.
+
+Needs Python 3.11 and Node 20+. MongoDB and Redis are optional (in-memory fallbacks).
 
 ## What it does
 
@@ -34,10 +52,7 @@ experiences. Built on **LangGraph**, **FastAPI**, **MongoDB vector search** and 
 | Tactical detection | Precision **63%**, recall **77%** on 30 unseen synthetic matches with known ground truth |
 | Translation | **92%** of translations pass number/name re-verification |
 | Fast path | 2.4 ms per event (p50) |
-| Tests | 50 passing (`pytest`) |
-
-An optional external-validation adapter checks the models against public open data (not Premier League data; disabled
-in the product, nothing redistributed). See section 8 of the report.
+| Tests | 47 passing (`pytest`) |
 
 | Explainable insight (Why?) | What-if lab |
 |---|---|
@@ -64,7 +79,8 @@ in the product, nothing redistributed). See section 8 of the report.
   and a downloadable evidence appendix; unsafe prose fails closed to deterministic facts.
 - **Tracing dashboard** (Traces tab): a metadata-only OpenTelemetry waterfall with errors and p50/p95 latency. The
   same spans export to Azure Application Insights; prompts and answers are never captured.
-- **A2A agent**: `GET /.well-known/agent-card.json` and JSON-RPC `POST /a2a` (`message/send`) with the skills `match_qa`,
+- **A2A agent**: `GET /.well-known/agent-card.json` and JSON-RPC `POST /a2a` (A2A 0.3 `message/send` and A2A 1.0
+  `SendMessage`, so Microsoft Agent Framework's `A2AAgent` can call it) with the skills `match_qa`,
   `match_status` and `recap`, so other agents can call it. Try it with `backend/scripts/a2a_client.py`.
 - **MCP server for GitHub Copilot**: `backend/mcp_server.py` has 8 tools (`ask_match`, `what_if`, `generate_recap`,
   `get_tactics`, …). Open the repo in VS Code and Copilot agent mode picks it up from `.vscode/mcp.json`.
@@ -129,6 +145,15 @@ Full design: [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) · API: [docs/API.md](
 Also: Match Story (5 moments, how it was won, player of the match, tactical battle, biggest miss),
 Players (influence model, touch maps), Teams (head-to-head), WHY? explainability drawer, voice Match Copilot.
 
+## Hackathon categories: where to look
+
+| Category | Evidence in this repo |
+|---|---|
+| **Best Multi-Agent Orchestration** | 30 LangGraph agents with conditional routing (`backend/app/graph/builder.py`) · Microsoft Agent Framework workflow (`backend/app/services/agent_desk.py`) · A2A endpoint (`backend/app/api/routes_a2a.py`) · MCP server for GitHub Copilot (`backend/mcp_server.py`, `.vscode/mcp.json`) |
+| **Best Use of Microsoft Foundry** | Azure OpenAI with tiered routing and JSON-mode output (`backend/app/llm/router.py`) · Foundry evaluators in `backend/eval/llm_eval.py` · results in [EVALUATION.md](docs/EVALUATION.md) |
+| **Best Enterprise Solution** | Fact verification on every insight (`backend/app/agents/evidence.py`) · Recap Studio · coach PDF · accessibility mode · OpenTelemetry tracing (`backend/app/services/tracing.py`) · auth, rate limiting, audit log, Key Vault, Bicep (`infra/azure`) |
+| **Azure Cloud Native** | Container Apps, Cosmos DB for MongoDB vCore, Azure Cache for Redis, Web PubSub, Key Vault, Application Insights (`infra/azure/main.bicep`) |
+
 ## Microsoft / Azure
 
 | Service | Role |
@@ -148,15 +173,14 @@ Players (influence model, touch maps), Teams (head-to-head), WHY? explainability
 ## Data honesty
 
 All product data is **synthetic**: fictional clubs, players and season archive, labelled synthetic in the UI. Live
-provider feeds can plug in through `POST /api/events` (same schema). An optional open-data adapter
-(`ENABLE_REAL_DATA`, **off by default**) exists only for offline model validation; no real data is shipped.
+provider feeds can plug in through `POST /api/events` (same schema). The API accepts only synthetic matches.
 
 ## Repository
 
 ```
 backend/app   agents · graph · rag · cag · mag · tactical · prediction · voice · visualization · services · api
-backend/tests 50 tests: tactics, patterns, routing, personalisation, RAG/CAG/MAG, verification, translation, data adapters, LangGraph, API + WebSocket, voice
-backend/eval  calibration, model fitting, evaluation scripts → docs/EVALUATION.md
+backend/tests 47 tests: tactics, patterns, routing, personalisation, RAG/CAG/MAG, verification, translation, LangGraph, API + WebSocket, voice
+backend/eval  evaluation scripts → docs/EVALUATION.md
 frontend/src  React + TypeScript + Tailwind + Framer Motion + React Three Fiber
 infra         docker-compose, Azure Bicep + deploy script
 docs          architecture, API, demo script, pitch deck content

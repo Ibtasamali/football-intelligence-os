@@ -26,7 +26,7 @@ Agentic RAG (plan → retrieve → rerank → validate → re-plan).
 **6 · Trust: measured, not claimed**
 Unsupported or contradicted claims fall from **58%** (a naive chatbot prompt) to **11%**, Microsoft Foundry groundedness is ≥ 4 on **100%** of texts, and
 untraceable numbers stay at **0%**. Pattern detection reaches 63% precision and 77% recall on unseen matches with known
-ground truth. The evaluation even caught our own over-confident goal predictor, so we refit it and labelled it honestly.
+ground truth.
 
 **6b · How trust is built**
 Numbers come from a deterministic tactical engine. The LLM only reasons over an evidence package. The Fact
@@ -62,7 +62,7 @@ reports ingested via Document Intelligence), betting and fantasy (explainable, l
 (fan engagement). Pricing per match or per active fan; cost per fan approaches zero thanks to shared insights.
 
 **11 · Roadmap**
-Real provider feeds (Opta / StatsBomb adapters on the same event schema) · tracking-data pitch control ·
+Live provider feeds on the same event schema · tracking-data pitch control ·
 highlight-clip alignment · live tactical alerts on the bench · Foundry Agent Service hosting for the desk.
 
 **12 · Ask**

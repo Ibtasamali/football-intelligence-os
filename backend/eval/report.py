@@ -22,22 +22,18 @@ def pct(v):
 
 
 def main():
-    det, fit, llm = load("deterministic"), load("fitted"), load("llm")
-    prof = json.loads((ROOT / "app/tactical/profiles/statsbomb.json").read_text())
+    det, llm = load("deterministic"), load("llm")
     syn = json.loads((ROOT / "app/tactical/profiles/synthetic.json").read_text())
     L = []
     w = L.append
     w("# Evaluation Report — Football Intelligence OS\n")
     w("The product runs on **synthetic, football-realistic data** (hackathon requirement). Every number below is generated "
       "by the scripts in `backend/eval/`: the hallucination, cost and latency results on our synthetic demo match, pattern "
-      "detection on held-out synthetic matches with known ground truth, and an *optional external validation* of the models "
-      "against public open data (StatsBomb Open Data: World Cup 2022, Euro 2024; no Premier League data; not used or shipped "
-      "by the product). Models are always scored on data they were **not** fitted or tuned on. Reproduce with:\n")
-    w("```bash\ncd backend\n.venv/bin/python -m eval.calibrate        # real-data pattern thresholds\n"
-      ".venv/bin/python -m eval.tune_synthetic   # supervised thresholds (train seeds)\n"
+      "detection on held-out synthetic matches with known ground truth. Models are always scored on data they were **not** "
+      "fitted or tuned on. Reproduce with:\n")
+    w("```bash\ncd backend\n.venv/bin/python -m eval.tune_synthetic   # supervised thresholds (train seeds)\n"
       ".venv/bin/python -m eval.select_synthetic # model selection (validation seeds)\n"
-      ".venv/bin/python -m eval.fit_models       # xG + goal-threat on real matches\n"
-      ".venv/bin/python -m eval.deterministic    # pattern detection (test seeds), generalisation, next action\n"
+      ".venv/bin/python -m eval.deterministic    # pattern detection (test seeds)\n"
       ".venv/bin/python -m eval.llm_eval         # hallucination, cost, latency, translation (uses Azure OpenAI)\n"
       ".venv/bin/python -m eval.report\n```\n")
 
@@ -58,13 +54,6 @@ def main():
         p = det["patterns_synthetic"]
         w(f"| Does tactical detection find the right patterns? | Precision **{pct(p['micro_precision'])}**, recall **{pct(p['micro_recall'])}** "
           f"on {p['seeds']} unseen matches with known ground truth |")
-    if fit:
-        x = fit["xg"]
-        w(f"| Is the xG model credible? | Held-out Brier **{x['brier_fitted']}** vs StatsBomb's professional model **{x['brier_statsbomb']}** "
-          f"(constant baseline {x['brier_constant']}; small test set: {x['test_goals']} goals) |")
-        g = fit["goal_threat"]
-        w(f"| Can it predict the next goal? | Weakly, and we say so: AUC **{g['auc']}**, Brier skill **{g['brier_skill_score']:+.3f}** "
-          f"vs base rate (cross-validated). Shown in the UI as a low-resolution estimate |")
     if llm:
         t = llm["translation"]
         w(f"| Is translated commentary safe? | **{t['verified_pct']:.0f}%** of translations passed number/name re-verification "
@@ -102,7 +91,7 @@ def main():
               "texts stay at 100% ≥ 4, and the claim-level audit shows where the remaining errors are.")
         w("\n**Reading the results.** Grounding the LLM in the evidence package is the big win: unsupported or contradicted claims "
           "fall roughly fourfold and untraceable numbers fall to zero. The verification loop guarantees numbers, event IDs, sources and "
-          "prediction wording; it does not rewrite *interpretive* sentences (e.g. \"this boosted Argentina's momentum\"), which a strict "
+          "prediction wording; it does not rewrite *interpretive* sentences (e.g. \"this boosted Azure City's momentum\"), which a strict "
           "judge marks unsupported. So grounded and pipeline score within noise of each other on that metric. A semantic claim-level "
           "checker is the next step on the roadmap.\n")
         w("\n*Unsupported* does not always mean false: a naive model may state true real-world facts about famous players or national teams. "
@@ -116,8 +105,8 @@ def main():
         w(f"**Ground truth.** The synthetic generator is driven by a tactical script (press intensity, block height, flank bias, "
           f"full-back push). The detectors never see the script. Scripted phases become labelled windows. "
           f"Tolerance: {p['tolerance']}.\n")
-        w(f"**Protocol.** Hand-set thresholds (tuned on seed 11), plus supervised thresholds fitted on train seeds 0–29; "
-          f"per pattern the better one was chosen on **validation seeds 30–59**; results below are on **test seeds 100–129**.\n")
+        w("**Protocol.** Hand-set thresholds (tuned on seed 11), plus supervised thresholds fitted on train seeds 0–29; "
+          "per pattern the better one was chosen on **validation seeds 30–59**; results below are on **test seeds 100–129**.\n")
         w("| Pattern | Precision | Recall | Detections | Scripted windows | Median detection delay | Thresholds |")
         w("|---|---|---|---|---|---|---|")
         sel = syn.get("selection", {})
@@ -127,59 +116,10 @@ def main():
         w(f"| **Micro average** | **{pct(p['micro_precision'])}** | **{pct(p['micro_recall'])}** | | | | |\n")
         w("Many high-press \"false positives\" fall in phases where a team presses fairly hard but below the script's ground-truth "
           "threshold (e.g. Thames chasing the game at press intensity 0.72), so the precision is conservative.\n")
-        g = det["threshold_generalisation"]
-        w("### Real matches: calibrated, not hand-tuned\n")
-        w(f"Real football is noisier than the generator, so the real-data profile is **calibrated on {prof['samples']} team-windows "
-          f"from {len(prof['matches'])} real matches** (demo matches excluded). Each pattern fires only when its statistic is unusual "
-          f"(target ≈ {pct(prof['target_rate'])} of windows).\n")
-        w("| Pattern | Trigger rate on calibration corpus | Share of team-minutes active on held-out finals |")
-        w("|---|---|---|")
-        for k, v in g["calibration_rate"].items():
-            w(f"| {k.replace('_', ' ').title()} | {pct(v)} | {pct(g['held_out_active_share'].get(k))} |")
-        w(f"\nHeld-out matches: {', '.join(g['held_out_matches'])}. Active share is higher than the trigger rate because hysteresis "
-          "keeps a pattern on for several minutes once started.\n")
-
-    # ---------------- models
-    if fit:
-        x, g = fit["xg"], fit["goal_threat"]
-        w("## 3. Expected goals (xG)\n")
-        w(f"Logistic model on distance, visible goal angle and header, fitted on {x['train_shots']} real non-penalty shots and "
-          f"tested on {x['test_shots']} shots from {len(fit['test_matches'])} held-out matches.\n")
-        w("| Model | Held-out Brier ↓ | Held-out log loss ↓ |")
-        w("|---|---|---|")
-        w(f"| Constant (base rate) | {x['brier_constant']} | – |")
-        w(f"| Previous hand-set FIOS model | {x['brier_previous_handset']} | – |")
-        w(f"| **Fitted FIOS model** | **{x['brier_fitted']}** | {x['logloss_fitted']} |")
-        w(f"| StatsBomb xG (professional, many more features) | {x['brier_statsbomb']} | {x['logloss_statsbomb']} |")
-        w(f"\nCorrelation with StatsBomb xG: r = {x['pearson_r_vs_statsbomb']}. Caveat: only {x['test_goals']} goals in the test set, "
-          "so the gap to StatsBomb is not statistically meaningful; the honest reading is *comparable on this sample*. "
-          "For real matches the platform uses StatsBomb's own xG; the fitted model serves synthetic and future feeds without xG.\n")
-        w("## 4. Goal-threat prediction (\"team scores in the next 10 minutes\")\n")
-        w(f"Grouped 5-fold cross-validation by match over {g['samples']} live samples ({g['positives']} positives).\n")
-        w("| Model | Brier ↓ | Log loss ↓ | AUC ↑ |")
-        w("|---|---|---|---|")
-        w(f"| Constant base rate | {g['brier_constant']} | {g['logloss_constant']} | 0.5 |")
-        w(f"| Fitted logistic ({', '.join(g['features'])}) | {g['brier_model']} | {g['logloss_model']} | {g['auc']} |")
-        w("\n| Predicted bin | n | Mean predicted | Observed |")
-        w("|---|---|---|---|")
-        for b in g["reliability"]:
-            w(f"| {b['bin']} | {b['n']} | {b['mean_predicted']} | {b['observed_rate']} |")
-        w(f"\n**Finding.** Our original hand-set goal-threat model was **over-confident** (it predicted ~38% where ~12% happened; "
-          "Brier skill −0.23 on the same corpus). The evaluation caught this; the refit model is calibrated but the signal for "
-          "10-minute goal prediction from event data is weak (AUC "
-          f"{g['auc']}). Tactical-pattern and momentum features added no predictive value in cross-validation, so they were "
-          "dropped. The UI labels this as a low-resolution estimate rather than overselling it.\n")
-    if det:
-        n = det["real_data"]["next_action"]
-        w("## 5. Next-action model\n")
-        w(f"Markov transitions learned live within each match, predicting the next event type before it happens: "
-          f"top-1 accuracy **{pct(n['top1_accuracy'])}** vs **{pct(n['always_pass_baseline'])}** for always predicting a pass "
-          f"({n['predictions']:,} predictions over {det['real_data']['matches']} real matches).\n")
-
     # ---------------- cost & latency
     if llm:
         c = llm["cost_latency"]
-        w(f"## 6. Cost and latency ({llm['match']}, production pipeline)\n")
+        w(f"## 3. Cost and latency ({llm['match']}, production pipeline)\n")
         w("| Metric | Value |")
         w("|---|---|")
         w(f"| Events processed | {c['events']} |")
@@ -209,30 +149,19 @@ def main():
           "(\"explain like I'm a beginner\" reuses already-verified text).\n")
     if llm:
         t = llm["translation"]
-        w("## 7. Multilingual commentary\n")
+        w("## 4. Multilingual commentary\n")
         w(f"{t['translations']} translations of verified insights into {', '.join(t['languages'])}. Each translation is re-verified: "
           "no number may be added or changed (decimals, percentages and years must survive; Arabic-Indic and Devanagari digits "
           "are normalised) and player names must stay intact. Failures retry once, then fall back to verified English.\n")
         w(f"Verified: **{t['verified_pct']}%** · first try: **{t['first_try_pct']}%**.\n")
-    ext = load("llm_statsbomb")
-    if ext:
-        h2 = ext["hallucination"]["conditions"]
-        w("## 8. External validation on public open data (optional)\n")
-        w(f"To check the results are not an artefact of our own generator, the same hallucination protocol was run on a public "
-          f"open-data match ({ext['match']}, StatsBomb Open Data). This adapter is disabled in the product (`ENABLE_REAL_DATA=false`) "
-          "and no data is redistributed.\n")
-        w("| Condition | Unsupported | Contradicted | Untraceable numbers |")
-        w("|---|---|---|---|")
-        for k in ("naive", "grounded", "pipeline"):
-            d = h2[k]
-            w(f"| {k} | {d['unsupported_pct']}% | {d['contradicted_pct']}% | {d['untraceable_numbers_pct']}% |")
-        w("")
     w("## Limitations\n")
     w("- The LLM judge is a model too (same family as the generator); it is instructed to be strict and sees exactly the evidence, "
       "but it is not a human annotation. The deterministic untraceable-number check is independent of any model.")
-    w("- Pattern ground truth exists only for synthetic matches; on real matches we report calibrated activation rates, "
-      "plus qualitative agreement with the known story of the final (Argentina's left-flank dominance before both first-half goals).")
-    w("- Test sets for xG (goals) and goal-threat (positives) are small; differences of a few thousandths in Brier score are noise.")
+    w("- Pattern ground truth comes from the synthetic generator's tactical script; detectors never see the script, but "
+      "real football is noisier than any generator.")
+    w("- The xG and goal-threat models use logistic coefficients estimated offline (`app/prediction/fitted.json`); only the "
+      "parameters ship, and every match the product analyses is synthetic. The goal-threat signal is weak, so the UI labels it "
+      "a low-resolution estimate.")
     w("- Cost uses list prices that change; latency depends on Azure quota (429 throttling adds seconds under bursts).")
     DOC.write_text("\n".join(L))
     print(f"wrote {DOC}")

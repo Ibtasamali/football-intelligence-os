@@ -11,8 +11,8 @@ const post = <T,>(path: string, body?: unknown) => req<T>(path, { method: "POST"
 
 export const api = {
   health: () => req<any>("/health"),
-  createMatch: (match_id: string, source = "synthetic", statsbomb_key?: string) =>
-    post<any>("/api/matches", { match_id, source, statsbomb_key, autostart: false, director: true, speed: 20 }),
+  createMatch: (match_id: string) =>
+    post<any>("/api/matches", { match_id, source: "synthetic", autostart: false, director: true, speed: 20 }),
   matchCatalog: () => req<any>("/api/catalog/matches"),
   match: (id: string) => req<any>(`/api/matches/${id}`),
   tactics: (id: string) => req<any>(`/api/matches/${id}/tactics`),

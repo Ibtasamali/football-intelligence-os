@@ -107,7 +107,7 @@ class Match(BaseModel):
     score: dict[str, int] = Field(default_factory=dict)
     synthetic: bool = True
     tenant_id: str = "demo"
-    source: str = "synthetic"            # synthetic | statsbomb | external
+    source: str = "synthetic"            # synthetic (the only source this build accepts)
     duration_minutes: int = 90
     notes: dict[str, Any] = Field(default_factory=dict)  # e.g. penalty shoot-out result, attribution
 

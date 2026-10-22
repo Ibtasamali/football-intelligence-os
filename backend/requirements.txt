@@ -21,3 +21,7 @@ agent-framework-orchestrations==1.3.0
 agent-framework-a2a==1.0.0b261002
 opentelemetry-sdk>=1.45,<2
 reportlab>=4.4,<5
+# ffmpeg binary for the two-voice recap podcast
+imageio-ffmpeg>=0.5
+# MCP server for GitHub Copilot agent mode (backend/mcp_server.py)
+mcp==2.3.0

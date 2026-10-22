@@ -41,7 +41,7 @@ def match_status(match_id: str = "live-demo") -> dict:
 
 @mcp.tool(description="Latest AI insights (headline, minute, category, confidence). Optional category filter, e.g. GOAL.")
 def list_insights(match_id: str = "live-demo", limit: int = 8, category: str = "") -> list[dict]:
-    q = f"?limit=200" + (f"&category={urllib.parse.quote(category)}" if category else "")
+    q = "?limit=200" + (f"&category={urllib.parse.quote(category)}" if category else "")
     ins = _call(f"/api/matches/{match_id}/insights{q}")["insights"]
     ins = sorted(ins, key=lambda i: (i["minute"], i["second"]))[-limit:]
     return [{"insight_id": i["insight_id"], "minute": i["minute"], "category": i["category"], "headline": i["headline"],

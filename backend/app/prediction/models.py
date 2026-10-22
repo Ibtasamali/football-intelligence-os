@@ -59,7 +59,7 @@ def goal_threat(engine: TacticalEngine, team_id: str, active_patterns: list[dict
                                     zip(_GT["features"], _GT["weights"][1:], _GT["mean"], _GT["std"]))
         p10 = 1 / (1 + math.exp(-z))
         return {"team_id": team_id, "p_goal_next_10": round(p10, 3),
-                "model": f"low-resolution logistic estimate (fitted on real matches, CV AUC {_GT.get('cv_auc', '?')})", "inputs": {
+                "model": f"low-resolution fitted logistic estimate (cross-validated AUC {_GT.get('cv_auc', '?')})", "inputs": {
             "xg_10min": f["xg_10"], "field_tilt_10min": f["field_tilt_10"], "momentum": round(f["momentum"], 2),
             "pattern_adjustment": round(f["pattern_adj"], 2)}}
     return _goal_threat_handset(engine, team_id, active_patterns)

@@ -6,7 +6,6 @@ from app.data.teams import PLAYERS, TEAMS, player_name, team_name
 from app.models.domain import EventType
 from app.prediction.models import substitution_impact
 from app.tactical.engine import channel, team_frame
-from app.tactical.patterns import ZONES
 
 E = EventType
 

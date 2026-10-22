@@ -21,12 +21,7 @@ export async function bootstrap(matchId: string) {
   try {
     m = await api.match(matchId);
   } catch {
-    try {
-      const real = matchId !== "live-demo";
-      await api.createMatch(matchId, real ? "statsbomb" : "synthetic", real ? matchId : undefined);
-    } catch {
-      await api.createMatch(matchId, "synthetic");  // real data disabled → synthetic match with this id (e.g. a recording)
-    }
+    await api.createMatch(matchId);  // synthetic match with this id (e.g. the video recorder's own match)
     m = await api.match(matchId);
   }
   const roster = Object.fromEntries((m.roster as any[]).map((p) => [p.player_id, p]));
@@ -106,9 +101,6 @@ export function connect(matchId: string) {
       case "routing":
         st().onRouting(msg);
         break;
-      case "archive_ready":
-        st().toast({ kind: "info", title: "Real historical archive ready", body: `${msg.documents} earlier matches analysed for RAG comparisons.` });
-        break;
       case "replay_finished":
         st().toast({ kind: "info", title: "Full time", body: "Open Match Story for the AI summary." });
         break;
@@ -128,12 +120,11 @@ export async function refreshReplay() {
   }
 }
 
-/** Switch to another match (synthetic demo or a real StatsBomb match) and reconnect. */
-export async function switchMatch(key: string, source?: "synthetic" | "statsbomb") {
+/** Switch to (or reset) a synthetic match and reconnect. */
+export async function switchMatch(key: string, _source: "synthetic" = "synthetic") {
   const id = key === "demo" ? "live-demo" : key;
   const st = useStore.getState();
-  const src = source ?? (key === "demo" ? "synthetic" : "statsbomb");
-  await api.createMatch(id, src, src === "statsbomb" ? key : undefined);
+  await api.createMatch(id);
   try { localStorage.setItem("fios.match", id); } catch { /* ignore */ }
   st.set({ matchId: id, replayFrames: null });
   await bootstrap(id);

@@ -83,7 +83,7 @@ export default function LiveScreen() {
           {notStarted && !frames && (
             <div className="absolute inset-0 z-10 grid place-items-center bg-ink-950/55 backdrop-blur-[2px]">
               <div className="text-center">
-                <div className="label mb-2 text-cyan-300">{match?.source === "statsbomb" ? "Real match · StatsBomb data" : "Demo match"}</div>
+                <div className="label mb-2 text-cyan-300">Synthetic demo match</div>
                 <div className="mb-6 font-display text-3xl font-bold text-white">{match?.competition ?? "Ready"}</div>
                 <button onClick={start} disabled={starting}
                         className="mx-auto flex items-center gap-3 rounded-2xl bg-gradient-to-r from-cyan-400 to-sky-500 px-10 py-5 font-display text-2xl font-bold text-ink-950 shadow-[0_0_60px_rgba(34,211,238,.6)] transition hover:scale-105">

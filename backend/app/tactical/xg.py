@@ -31,8 +31,8 @@ def shot_geometry(tx: float, ty: float) -> tuple[float, float]:
 
 
 def expected_goals(tx: float, ty: float, header: bool = False, big_chance: bool = False, fitted: bool = True) -> float:
-    """If eval/fit_models.py has run, coefficients are the logistic fit on real StatsBomb shots (held-out tested);
-    otherwise the hand-set defaults below. `big_chance` is only used by the synthetic generator."""
+    """Uses the logistic coefficients in app/prediction/fitted.json (estimated offline; only the parameters ship,
+    no match data); otherwise the hand-set defaults below. `big_chance` is only used by the synthetic generator."""
     distance, angle = shot_geometry(tx, ty)
     if fitted and _COEF:
         c = _COEF

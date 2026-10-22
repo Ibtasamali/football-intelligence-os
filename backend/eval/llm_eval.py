@@ -1,5 +1,4 @@
-"""LLM evaluations on the product's own SYNTHETIC demo match (default) or, with EVAL_MATCH=statsbomb, on a real
-open-data match for external validation.
+"""LLM evaluations on the product's own SYNTHETIC demo match.
 
 1. Cost & latency: full replay through the production pipeline (fast path + LangGraph deep path).
 2. Hallucination: for each significant moment, three conditions judged against the SAME evidence package —
@@ -16,7 +15,6 @@ from __future__ import annotations
 
 import asyncio
 import json
-import os
 import time
 from pathlib import Path
 
@@ -24,7 +22,6 @@ import numpy as np
 
 from app.agents.evidence import NUM_RE, _number_ok, allowed_numbers
 from app.core.config import get_settings
-from app.data.statsbomb import CURATED, load_match
 from app.data.teams import player_name, team_name
 from app.services.container import Container
 from app.services.observability import OBS
@@ -84,17 +81,13 @@ async def main(max_samples: int = 18):
     c = Container(s)
     await c.start(use_mock_db=True, use_memory_kv=True, enable_llm=True)
     c.eval_mode = True
-    if os.getenv("EVAL_MATCH", "synthetic") == "statsbomb":
-        cur = CURATED[0]
-        match, events, _ = await load_match(cur["sb_match_id"], cur["competition_id"], cur["season_id"], "eval-final")
-    else:
-        from app.data.synthetic import generate_demo_match
-        from app.data.teams import AWAY_ID, HOME_ID
-        from app.models.domain import Match
-        cur = {"label": "Synthetic demo match — Azure City FC vs Thames Athletic"}
-        match = Match(match_id="eval-final", home_team_id=HOME_ID, away_team_id=AWAY_ID, competition="Showcase League (synthetic)",
-                      venue="Azure Arena", kickoff="synthetic", score={HOME_ID: 0, AWAY_ID: 0})
-        events = generate_demo_match("eval-final")
+    from app.data.synthetic import generate_demo_match
+    from app.data.teams import AWAY_ID, HOME_ID
+    from app.models.domain import Match
+    cur = {"label": "Synthetic demo match — Azure City FC vs Thames Athletic"}
+    match = Match(match_id="eval-final", home_team_id=HOME_ID, away_team_id=AWAY_ID, competition="Showcase League (synthetic)",
+                  venue="Azure Arena", kickoff="synthetic", score={HOME_ID: 0, AWAY_ID: 0})
+    events = generate_demo_match("eval-final")
     rt = await c.create_match(match)
 
     # ---------------- 1. cost & latency
@@ -189,8 +182,7 @@ async def main(max_samples: int = 18):
              "languages": ["es", "ar", "hi"]}
     print("TRANSLATION", trans)
     OUT.mkdir(exist_ok=True)
-    out_name = "llm_statsbomb.json" if os.getenv("EVAL_MATCH") == "statsbomb" else "llm.json"
-    (OUT / out_name).write_text(json.dumps({"match": cur["label"], "cost_latency": cost_res, "hallucination": halluc,
+    (OUT / "llm.json").write_text(json.dumps({"match": cur["label"], "cost_latency": cost_res, "hallucination": halluc,
                                               "translation": trans}, indent=2, default=str))
     await c.stop()
 

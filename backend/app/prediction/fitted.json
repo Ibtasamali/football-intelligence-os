@@ -26,5 +26,5 @@
     "angle": 1.4959,
     "header": -1.3805
   },
-  "trained_on": "24 real matches (StatsBomb Open Data), 8 held out"
+  "trained_on": "estimated offline on public open-data events (24 matches, 8 held out); only these parameters ship"
 }

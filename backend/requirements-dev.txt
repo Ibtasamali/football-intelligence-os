@@ -2,3 +2,7 @@
 pytest>=8
 pytest-asyncio>=0.23
 mongomock-motor>=0.0.30
+# evaluation harness (backend/eval): Microsoft Foundry evaluators
+azure-ai-evaluation==1.18.8
+# video recorder (backend/scripts/record_video.py)
+playwright>=1.45

@@ -10,12 +10,12 @@ from reportlab.lib.enums import TA_CENTER
 from reportlab.lib.pagesizes import A4
 from reportlab.lib.styles import ParagraphStyle, getSampleStyleSheet
 from reportlab.lib.units import mm
-from reportlab.platypus import PageBreak, Paragraph, SimpleDocTemplate, Spacer, Table, TableStyle
+from reportlab.platypus import Paragraph, SimpleDocTemplate, Spacer, Table, TableStyle
 
 from app.agents.evidence import verify_output
 from app.core.config import BACKEND_DIR
 from app.data.teams import player_name, team_name
-from app.services.story import bad_minutes, valid_minutes
+from app.services.story import bad_minutes
 from app.services.tracing import span
 
 REPORT_DIR = BACKEND_DIR / "data_cache" / "reports"

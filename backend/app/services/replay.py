@@ -96,26 +96,6 @@ class ReplayController:
                 "clock": cur.clock if cur else "00:00"}
 
 
-def real_match_pacing(events: list[MatchEvent]) -> tuple[list[tuple[int, int]], list[dict]]:
-    """Director windows + jump points for a real match: slow down before goals, big chances and red cards.
-    This is presentation pacing only: the AI pipeline never sees future events."""
-    windows, jumps = [], [{"minute": 0, "label": "Kick-off", "seq": 0}]
-    for e in events:
-        big = e.type.value == "GOAL" or (e.type.value == "SHOT" and (e.meta.get("xg") or 0) >= 0.3) or \
-            (e.type.value == "CARD" and e.outcome == "red")
-        if big:
-            windows.append((e.game_seconds - 150, e.game_seconds + 25))
-        if e.type.value == "GOAL":
-            period, start = e.meta.get("period"), e.game_seconds - 150
-            seq = next((x.seq for x in events if x.meta.get("period") == period and x.game_seconds >= start), e.seq)
-            jumps.append({"minute": round(start / 60, 1), "label": f"{e.minute}' goal build-up", "seq": seq})
-    for period, label in ((2, "Second half"), (3, "Extra time")):
-        first = next((x for x in events if x.meta.get("period") == period), None)
-        if first:
-            jumps.append({"minute": first.minute, "label": label, "seq": first.seq})
-    return windows, sorted(jumps, key=lambda j: j["seq"])
-
-
 SYNTHETIC_JUMPS = [{"minute": 0, "label": "Kick-off"}, {"minute": 15, "label": "15' press era"},
                    {"minute": 26, "label": "26' flank overload"}, {"minute": 44, "label": "Half-time"},
                    {"minute": 56, "label": "56' second press"}, {"minute": 67, "label": "67' deep block"},

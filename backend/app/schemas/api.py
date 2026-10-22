@@ -8,8 +8,7 @@ from app.models.domain import KnowledgeLevel, Persona
 
 class CreateMatchRequest(BaseModel):
     match_id: str = Field(default="demo-azc-tha", pattern=r"^[a-zA-Z0-9_\-]{3,64}$")
-    source: str = Field(default="synthetic", pattern="^(synthetic|statsbomb|external)$")
-    statsbomb_key: str | None = Field(default=None, max_length=64)  # one of the curated keys (GET /api/catalog/matches)
+    source: str = Field(default="synthetic", pattern="^synthetic$")  # synthetic, football-realistic data only
     seed: int = 11
     autostart: bool = False
     speed: float = Field(default=20.0, gt=0, le=600)

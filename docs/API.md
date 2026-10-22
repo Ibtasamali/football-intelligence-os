@@ -6,8 +6,8 @@ Interactive OpenAPI docs: `http://localhost:8077/docs`. Auth: none in demo mode;
 ## Matches
 | Method | Path | Description |
 |---|---|---|
-| GET | `/api/catalog/matches` | Available matches: synthetic demo + real StatsBomb matches (`wc2022-final`, `euro2024-final`, `wc2022-sf-arg-cro`) |
-| POST | `/api/matches` | Create/reset a match `{match_id, source:"synthetic"\|"statsbomb", statsbomb_key?, autostart, speed, director}`. Real matches also build the real historical archive in the background (`archive_ready` WS message) |
+| GET | `/api/catalog/matches` | Available matches (the synthetic demo match) |
+| POST | `/api/matches` | Create/reset a synthetic match `{match_id, source:"synthetic", seed?, autostart, speed, director}` |
 | GET | `/api/matches` | Loaded matches with replay status |
 | GET | `/api/matches/{id}` | Teams, roster, CAG context, engine snapshot, last event with positions |
 | GET | `/api/matches/{id}/insights` | Published insights (`?category=GOAL`) |

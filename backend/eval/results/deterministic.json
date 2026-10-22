@@ -37,36 +37,5 @@
     "unscripted_detections": {},
     "tolerance": "detection may start 1 min before to 3 min after the scripted window"
   },
-  "threshold_generalisation": {
-    "calibration_target": 0.07,
-    "calibration_rate": {
-      "HIGH_PRESS": 0.078,
-      "FLANK_OVERLOAD": 0.069,
-      "DEEP_BLOCK": 0.075,
-      "TRANSITION_VULNERABILITY": 0.071,
-      "MIDFIELD_SUPERIORITY": 0.072
-    },
-    "held_out_matches": [
-      "FIFA World Cup 2022 Final \u2014 Argentina vs France",
-      "UEFA Euro 2024 Final \u2014 Spain vs England",
-      "FIFA World Cup 2022 Semi-final \u2014 Argentina vs Croatia"
-    ],
-    "held_out_active_share": {
-      "HIGH_PRESS": 0.174,
-      "FLANK_OVERLOAD": 0.08,
-      "DEEP_BLOCK": 0.115,
-      "TRANSITION_VULNERABILITY": 0.079,
-      "MIDFIELD_SUPERIORITY": 0.073
-    },
-    "note": "share of team-minutes with the pattern active (hysteresis keeps patterns on for a while, so this is higher than the per-window trigger rate)"
-  },
-  "real_data": {
-    "matches": 32,
-    "next_action": {
-      "predictions": 72274,
-      "top1_accuracy": 0.682,
-      "always_pass_baseline": 0.443
-    }
-  },
   "runtime_s": 153.2
 }

@@ -1,7 +1,7 @@
 """Plain-language summaries of what each agent found — used by the Pipeline walkthrough (and the demo video)."""
 from __future__ import annotations
 
-from app.data.teams import player_name, team_name
+from app.data.teams import team_name
 
 
 def _pct(v):
@@ -25,7 +25,7 @@ def summarize(agent: str, o: dict) -> list[str]:
             sh = o.get("shapes") or {}
             return [f"{team_name(t)}: live {v.get('live')} (nominal {v.get('nominal')}, {v.get('phase')})" for t, v in sh.items()]
         if agent == "goal_probability":
-            out = [f"xG totals: " + ", ".join(f"{team_name(t)} {x}" for t, x in (o.get("xg_totals") or {}).items())]
+            out = ["xG totals: " + ", ".join(f"{team_name(t)} {x}" for t, x in (o.get("xg_totals") or {}).items())]
             if o.get("shot_xg") is not None:
                 out.insert(0, f"Shot quality: {o.get('shot_quality')} (xG {o.get('shot_xg')}). {(o.get('conversion_note') or '').replace(' 1 times', ' once')}")
             return out

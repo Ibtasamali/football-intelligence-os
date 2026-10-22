@@ -10,7 +10,7 @@ import { type Lang, loadLanguages } from "../lib/i18n";
 import A11yPanel from "./A11yPanel";
 
 export default function TopBar() {
-  const { teams, score, clock, connected, replay, matchId, profile, autoVoice, set, momentum, homeId, awayId, jumpPoints, match, demo } = useStore();
+  const { teams, score, clock, connected, replay, matchId, profile, autoVoice, set, momentum, homeId, awayId, jumpPoints, demo } = useStore();
   const [busy, setBusy] = useState(false);
   const [catalog, setCatalog] = useState<any[]>([]);
   const [langs, setLangs] = useState<Lang[]>([]);
@@ -116,7 +116,6 @@ export default function TopBar() {
                 onClick={() => { if (autoVoice) stopSpeaking(); set({ autoVoice: !autoVoice }); }}>
           {autoVoice ? <Volume2 size={14} /> : <VolumeX size={14} />}
         </button>
-        {match?.source === "statsbomb" && <span className="chip hidden whitespace-nowrap 2xl:inline-flex text-[10px] text-amber-200" title={match.notes?.attribution}>Real data · StatsBomb</span>}
         <A11yPanel />
         <button className="btn" title="Replay the 60-second judge tour" onClick={() => window.dispatchEvent(new Event("fios:tour"))}>
           <CircleHelp size={14} />

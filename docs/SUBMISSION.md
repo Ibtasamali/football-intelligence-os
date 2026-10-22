@@ -73,4 +73,4 @@ branding.
 - [ ] Record and upload the **< 2-minute video** (above). Check it is under 2:00.
 - [ ] Paste the **pitch** (section 2), the video URL and the GitHub URL on the project page.
 - [ ] Optional: deploy to **Azure Container Apps** for a live URL (`infra/azure/deploy.sh`).
-- [ ] Make sure the app runs on **synthetic data only** (default; `ENABLE_REAL_DATA=false`).
+- [x] The app runs on **synthetic data only** (the API rejects any other source).

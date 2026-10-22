@@ -11,12 +11,10 @@ import asyncio
 import hashlib
 import json
 import subprocess
-from pathlib import Path
 
 from app.agents.evidence import verify_output
 from app.core.config import BACKEND_DIR
 from app.core.logging import get_logger
-from app.data.teams import team_name
 from app.services.story import bad_minutes, valid_minutes
 
 log = get_logger("recap")

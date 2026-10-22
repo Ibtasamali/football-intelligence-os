@@ -74,7 +74,7 @@ def opponent(team_id: str) -> str:
 
 
 def register_team(team: Team) -> None:
-    """Add a team from an external data source (e.g. StatsBomb) to the shared registry."""
+    """Add a team from an external data source (e.g. a live provider feed) to the shared registry."""
     TEAMS[team.team_id] = team
 
 

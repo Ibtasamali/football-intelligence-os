@@ -56,8 +56,7 @@ def _conf(*scores: float) -> float:
 
 
 # ------------------------------------------------------------------ threshold profiles
-# "synthetic" was tuned on the generated demo match; "statsbomb" is produced by eval/calibrate.py from real
-# World Cup / Euro matches so that each pattern fires only when its statistic is unusual (~top decile of windows).
+# "synthetic" was tuned on the generated demo matches (see eval/tune_synthetic.py and eval/select_synthetic.py).
 DEFAULT_PROFILES: dict[str, dict] = {
     "synthetic": {"press_ppda_max": 4.5, "press_opp_half_min": 9, "press_defx_min": 56.0,
                   "flank_share_min": 0.55, "flank_actions_min": 14, "block_line_max": 23.0, "block_drop_min": 4.0,
