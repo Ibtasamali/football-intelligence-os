@@ -69,7 +69,8 @@ branding.
 
 ## 5. Checklist before submitting (deadline October 27)
 - [ ] **Rotate the Azure keys** that were shared in chat; put the new ones only in `backend/.env` (gitignored).
-- [x] **Public GitHub repository**: https://github.com/Ibtasamali/football-intelligence-os
+- [x] **Public GitHub repository**: https://github.com/Ibtasamali/football-intelligence-os (make it Public before submitting)
+- [x] **Testing access (live demo)**: http://20.3.128.102:8061
 - [ ] Record and upload the **< 2-minute video** (above). Check it is under 2:00.
 - [ ] Paste the **pitch** (section 2), the video URL and the GitHub URL on the project page.
 - [ ] Optional: deploy to **Azure Container Apps** for a live URL (`infra/azure/deploy.sh`).

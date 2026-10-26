@@ -6,7 +6,7 @@ A real-time, multi-agent football intelligence platform. It turns raw match even
 understanding, verified explanations, predictions, 3D visualization, voice and personalized fan
 experiences. Built on **LangGraph**, **FastAPI**, **MongoDB vector search** and **Azure OpenAI / Microsoft Foundry**.
 
-**[▶ 2-minute demo video](docs/video/fios-2min-v3.mp4)** · **[Full walkthrough (every agent)](docs/video/fios-full-v3.mp4)** ·
+**[🌐 Live demo: http://20.3.128.102:8061](http://20.3.128.102:8061)** · **[▶ 2-minute demo video](docs/video/fios-2min-v3.mp4)** · **[Full walkthrough (every agent)](docs/video/fios-full-v3.mp4)** ·
 **[Pitch](docs/PITCH.md)** · **[Evaluation report](docs/EVALUATION.md)** · **[Architecture](docs/ARCHITECTURE.md)**
 
 ![The AI detects a right-flank overload from the data alone, then the goal follows](docs/images/demo.gif)
@@ -16,6 +16,8 @@ experiences. Built on **LangGraph**, **FastAPI**, **MongoDB vector search** and 
 > hackathon requires. Real data is never shipped or used by the product.
 
 ## For judges: running in 60 seconds
+
+Fastest: open the **live demo at http://20.3.128.102:8061** (no install). To run it locally:
 
 ```bash
 git clone https://github.com/Ibtasamali/football-intelligence-os.git && cd football-intelligence-os
