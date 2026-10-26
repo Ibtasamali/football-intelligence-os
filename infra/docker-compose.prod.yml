@@ -1,0 +1,42 @@
+name: football-intelligence-os
+
+services:
+  mongo:
+    image: mongo:7
+    restart: unless-stopped
+    volumes:
+      - mongo-data:/data/db
+
+  redis:
+    image: redis:7-alpine
+    restart: unless-stopped
+
+  backend:
+    build:
+      context: ../backend
+    restart: unless-stopped
+    env_file:            # Azure keys live only on the server (never committed)
+      - path: ../backend/.env.prod
+        required: false
+    environment:
+      ENVIRONMENT: production
+      MONGODB_URI: mongodb://mongo:27017
+      REDIS_URL: redis://redis:6379/0
+      CORS_ORIGINS: '["http://20.3.128.102:8061"]'
+    depends_on:
+      - mongo
+      - redis
+
+  frontend:
+    build:
+      context: ../frontend
+    restart: unless-stopped
+    environment:
+      BACKEND_URL: http://backend:8000
+    depends_on:
+      - backend
+    ports:
+      - "8061:80"
+
+volumes:
+  mongo-data:
